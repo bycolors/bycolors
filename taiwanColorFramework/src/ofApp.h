@@ -2,6 +2,8 @@
 
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
+#include "ofxSvgLoader.h"
+
 
 
 class ofApp : public ofBaseApp{
@@ -45,6 +47,12 @@ class ofApp : public ofBaseApp{
     
         ofTrueTypeFont		infoFont;
         ofTrueTypeFont		titleFont;
+
+        ofTrueTypeFont      jpFontBig;
+        ofImage             logoTop;
+        ofxSvgLoader        logoTopSVG;
+    
+        int                 titleScale;
 
         bool    showInfo;
 

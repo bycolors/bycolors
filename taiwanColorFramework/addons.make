@@ -1,1 +1,3 @@
+ofxPoco
+ofxSvgLoader
 ofxXmlSettings

@@ -7,23 +7,36 @@ void ofApp::setup(){
     ofBackground(0, 0, 0);
     ofSetVerticalSync(true);
     ofEnableAlphaBlending();
+    ofEnableSmoothing();
     
     movieFbo.allocate(ofGetWidth(),ofGetHeight(),GL_RGBA);
-    colorCardFbo.allocate(ofGetWidth(),ofGetHeight(),GL_RGBA);
+    colorCardFbo.allocate(ofGetWidth(),ofGetHeight(),GL_RGBA,8);
     
     movieFbo.begin();
     ofClear(255, 255, 255,0);
     movieFbo.end();
     
     colorCardFbo.begin();
-    ofClear(255, 255, 255,0);
+    ofClear(255,0);
     colorCardFbo.end();
 
     
     mask.load("mask.png");
+    logoTop.load("logoTop-screenshot.png");
+    logoTopSVG.load("logo-top.svg");
     
     infoFont.load("DIN.otf", 18);
-    titleFont.load("Adobe Heiti Std R.ttf", 160, true,true,true);
+    titleFont.load("Tribute Roman", 64);
+    
+    ofTrueTypeFontSettings settings("Adobe Heiti Std R.ttf", 64);
+    settings.antialiased = true;
+    settings.dpi = 72;
+    settings.direction = OF_TTF_LEFT_TO_RIGHT;
+    settings.addRanges(ofAlphabet::Japanese);
+    jpFontBig.load(settings);
+    
+    
+    titleScale = 1;
 
     totalMovies = 3;
     nowPlayer = 0;
@@ -82,10 +95,29 @@ void ofApp::update(){
     movieFbo.end();
     
     colorCardFbo.begin();
-    ofBackground(100, 200, 200);
-    ofFill();
-    titleFont.drawStringAsShapes("hello", 500, 500);
     
+    
+
+    ofBackground(39, 85, 128);
+    ofFill();
+    ofPushMatrix();
+    ofPushStyle();
+    ofSetRectMode(OF_RECTMODE_CENTER);
+//        glBlendFuncSeparate(GL_ONE, GL_SRC_COLOR, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
+   // glBlendFuncSeparate(GL_ONE, GL_SRC_COLOR, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
+    //ofTranslate(colorCardFbo.getWidth()/2, colorCardFbo.getHeight()/2);
+    //ofSetColor(255,255,255,255);
+    logoTop.draw(ofGetWidth()/2,ofGetHeight()/2);
+  //  ofSetColor(255,0,0);
+//    ofFill();
+//    logoTopSVG.draw();
+    //if(titleScale<1.5) titleScale+=0.01;
+    //else    titleScale = 1;
+    //titleFont.drawString("byColors", ofGetWidth()/2,ofGetHeight()/2);
+    ofPopStyle();
+    ofPopMatrix();
     colorCardFbo.end();
     
     std::stringstream strm;
@@ -99,7 +131,13 @@ void ofApp::update(){
 void ofApp::draw(){
     movieFbo.draw(canvasOffsetX,canvasOffsetY);
     
+  //  glEnable(GL_BLEND);
+//    glBlendFuncSeparate(GL_ONE, GL_ZERO, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    
+    //    glBlendFuncSeparate(GL_ONE, GL_SRC_COLOR, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
     ofPushStyle();
+//    ofSetColor(255,255,255,255);
     ofSetRectMode(OF_RECTMODE_CENTER);
     colorCardFbo.draw(ofGetWidth()/2+maskOffsetX, ofGetHeight()/2+maskOffsetY);
     mask.draw(ofGetWidth()/2+maskOffsetX, ofGetHeight()/2+maskOffsetY);
@@ -113,6 +151,10 @@ void ofApp::draw(){
         infoFont.drawString("Total Frames: "+ofToString(movies[nowPlayer].getTotalNumFrames()), 50, 100);
         infoFont.drawString("Current Frame: "+ofToString(movies[nowPlayer].getCurrentFrame()), 50, 130);
     }
+
+//    ofSetColor(255,0,0);
+
+  //  logoTopSVG.draw();
 
 }
 
