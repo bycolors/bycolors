@@ -16,12 +16,12 @@ void ofApp::setup(){
 
     ofBackground(0, 0, 0);
     ofSetVerticalSync(true);
-    ofEnableAlphaBlending();
-    ofEnableSmoothing();
 
     //square canvas
     movieFbo.allocate(screenHeight,screenHeight,GL_RGBA);
     kPhotoFbo.allocate(screenHeight, screenHeight,GL_RGBA, 8); // 8 is number of sample
+    tPhotoFbo.allocate(screenHeight, screenHeight,GL_RGBA, 8); // 8 is number of sample
+    photoBombFbo.allocate(screenHeight,screenHeight,GL_RGBA);
 
     movieFbo.begin();
     ofClear(255, 255, 255,0);
@@ -31,14 +31,70 @@ void ofApp::setup(){
     ofClear(255, 255, 255,0);
     kPhotoFbo.end();
 
+    tPhotoFbo.begin();
+    ofClear(255, 255, 255,0);
+    tPhotoFbo.end();
+
+    photoBombFbo.begin();
+    ofClear(255, 255, 255,0);
+    photoBombFbo.end();
+
     searchingFont.load("Skia.ttf", 17);
     frameFont.load("Skia.ttf", 24);
 
-    kPhotoSize = kPhotoFbo.getWidth()*0.75;
     kPhotoInfoAlpha = 0;
+
+    // timing variable
     kPhotoInfoWaitCount = 0;
     kColorDelay = 100;
-    kPhotoFboXoffset = 0;
+    kColorWaitCount = 0;
+    tColorDelay = 100;
+    tColorWaitCount = 0;
+    tPhotoDelay = 100;
+
+    tPhotoWaitCount = 0;
+    tPhotoMonoDelay = 100;
+    tPhotoMonoInfoDelay = 50;
+    tPhotoColorFillDelay = 100;
+
+    tColorWaitCount = 0;
+    photoBombDelay = 100;
+
+
+    photoBombTotalNumb = 10;
+    photoBombOrderIndex = 0;
+    photoBombSwitchWaitCount = 0;
+    photoBombSwitchSpeed = 10; //the higher the slower
+    photoBombSwitchAccel = 7; //the higher the faster
+    photoBombSwitchDelay = photoBombSwitchSpeed+(int)(pow(photoBombTotalNumb,2)/photoBombSwitchAccel);
+
+    photoBombClosingWaitCount = 0;
+    mapDelay = 100;
+
+
+    ofLog()<<"photo bomb order";
+    // set some values and shuffle it
+    for (int i=0; i<photoBombTotalNumb; ++i) photoBombOrder.push_back(i); // 1 2 3 4 5 6 7 8 9
+    random_shuffle ( photoBombOrder.begin(), photoBombOrder.end() );
+
+    photoBombClosing.load("photoBombClosing.jpg");
+    
+    animatedPhotoPos.animateFromTo(0, screenHeight);
+    animatedPhotoPos.setDuration(1);
+    AnimCurve curve = (AnimCurve) (EASE_IN_EASE_OUT);
+    animatedPhotoPos.setCurve( curve );
+
+    animatedPhotoSize.animateFromTo(screenHeight*0.75, screenHeight);
+    animatedPhotoSize.setDuration(1);
+    animatedPhotoSize.setCurve( curve );
+
+    animatedCircleSize.animateFromTo(25, screenHeight*2);
+    animatedCircleSize.setDuration(2);
+    AnimCurve curve2 = (AnimCurve) (TANH);
+//    AnimCurve curve2 = (AnimCurve) (CUBIC_EASE_IN);
+
+    animatedCircleSize.setCurve( curve2 );
+
 
     colorWheel.setup(screenHeight*0.051,screenHeight*0.037,5.625); //outter radius, inner radius, rotation speed
 
@@ -86,33 +142,45 @@ void ofApp::update(){
         break;
         case STATE_KPHOTO_IN:
             //show kyoto photo, zoom, show text;
-            if(kPhotoSize<kPhotoFbo.getHeight()){
-                kPhotoSize+=5; //todo::add easing
+            if(!animatedPhotoSize.hasFinishedAnimating()){
+                float dt = 1.0f / 60.0f;
+                animatedPhotoSize.update( dt );
             }else{
-                kPhotoSize = kPhotoFbo.getHeight();
                 if(kPhotoInfoAlpha<255){
                     kPhotoInfoAlpha+=5;
                 }else{
                     resetKPhoto();
+                    animatedPhotoSize.animateFromTo(screenHeight*0.75, screenHeight);
                     state =STATE_KCOLOR_IN;
                 }
             }
+
+
             kPhotoFbo.begin();
                 ofPushMatrix();
                 ofPushStyle();
                 ofTranslate(kPhotoFbo.getWidth()/2, kPhotoFbo.getHeight()/2);
                 ofSetRectMode(OF_RECTMODE_CENTER);
 
-                drawKPhoto(0,0,kPhotoSize);
+                ofEnableAlphaBlending();
+                ofEnableSmoothing();
+
+                drawKPhoto(0,0,animatedPhotoSize.val());
                 drawKPhotoInfo(0,0,kPhotoFbo.getWidth(),kPhotoInfoAlpha);
-            
+
                 ofSetRectMode(OF_RECTMODE_CORNER);
                 drawFrame(-kPhotoFbo.getWidth()*0.11,-kPhotoFbo.getWidth()*0.15, kPhotoFbo.getWidth()*0.22, kPhotoFbo.getWidth()*0.305,ofColor::white);
-            
+
+                ofDisableAlphaBlending();
+                ofDisableSmoothing();
+
+
                 ofPopStyle();
                 ofPopMatrix();
 
             kPhotoFbo.end();
+
+
 
         break;
         case STATE_KCOLOR_IN:
@@ -120,34 +188,234 @@ void ofApp::update(){
             if(kPhotoInfoWaitCount<kColorDelay){
                 kPhotoInfoWaitCount++;
             }else{
-                kPhotoFboXoffset+=5;
+                if(!animatedPhotoPos.hasFinishedAnimating()){
+                    float dt = 1.0f / 60.0f;
+                    animatedPhotoPos.update( dt );
+
+                }else{
+                    animatedPhotoPos.animateFromTo(0,screenHeight);
+
+                    resetKPhotoInfo();
+                    kPhotoInfoWaitCount = 0;
+                    kPhotoFbo.begin();
+                    ofClear(255,255,255,0);
+                    kPhotoFbo.end();
+                    state = STATE_TCOLOR_IN;
+                }
             }
 
 
         break;
-        case 4:
+        case STATE_TCOLOR_IN:
             //show taiwan color, pan in;
+            if(kColorWaitCount<tColorDelay){
+                kColorWaitCount++;
+            }else{
+
+                if(!animatedPhotoPos.hasFinishedAnimating()){
+                    float dt = 1.0f / 60.0f;
+                    animatedPhotoPos.update( dt );
+
+                }else{
+                    animatedPhotoPos.animateFromTo(0,screenHeight);
+                    kColorWaitCount = 0;
+                    state = STATE_TPHOTO_IN;
+                }
+
+            }
 
         break;
-        case 5:
+        case STATE_TPHOTO_IN:
             //show taiwan photo, mono tone, show text;
+            if(tColorWaitCount<tPhotoDelay){
+                tColorWaitCount++;
+            }else{
+                tPhotoWaitCount++;
+
+                tPhotoFbo.begin();
+
+                if(tPhotoWaitCount<tPhotoMonoDelay){ // hold tPhoto
+
+                    tPhoto.draw(0,0,tPhotoFbo.getWidth(),tPhotoFbo.getHeight());
+
+                }else if (tPhotoWaitCount<tPhotoMonoDelay+tPhotoMonoInfoDelay){ // hold tPhoto Mono
+
+                    tPhotoMono.draw(0,0,tPhotoFbo.getWidth(),tPhotoFbo.getHeight());
+
+                }else if (tPhotoWaitCount<tPhotoMonoDelay+tPhotoMonoInfoDelay+tPhotoColorFillDelay){// hold tPhoto Mono Info
+
+                    tPhotoMonoInfo.draw(0,0,tPhotoFbo.getWidth(),tPhotoFbo.getHeight());
+
+                    ofPushMatrix();
+                    ofPushStyle();
+                    ofEnableAlphaBlending();
+                    ofEnableSmoothing();
+
+                    ofTranslate(tPhotoFbo.getWidth()*980/1080,tPhotoFbo.getHeight()*270/1080);
+                    // todo:: need to have an array hold the color circle's pos and color on all 80 photos
+
+                    ofSetColor(ofColor::white);
+                    ofSetCircleResolution(60);
+                    ofDrawCircle(0,0,25+1);
+
+                    ofSetColor(ofColor::fromHex(0xB87167));
+                    ofDrawCircle(0,0,25);
+
+                    ofDisableAlphaBlending();
+                    ofDisableSmoothing();
+
+                    ofPopStyle();
+                    ofPopMatrix();
+
+
+                }else {
+
+                    tPhotoWaitCount = 0;
+                    animatedCircleSize.animateFromTo(25, screenHeight*2);
+                    state = STATE_TCOLOR_FILL;
+
+                }
+
+                tPhotoFbo.end();
+            }
+
 
         break;
-        case 6:
-            //show taiwan color;
+        case STATE_TCOLOR_FILL:
+            //taiwan color fill;
+            tPhotoFbo.begin();
+
+            if(!animatedCircleSize.hasFinishedAnimating()){
+                float dt = 1.0f / 60.0f;
+                animatedCircleSize.update( dt );
+
+                ofPushMatrix();
+                ofPushStyle();
+                ofEnableAlphaBlending();
+                ofEnableSmoothing();
+
+                ofTranslate(tPhotoFbo.getWidth()*980/1080,tPhotoFbo.getHeight()*270/1080);
+                // todo:: need to have an array hold the color circle's pos and color on all 80 photos
+
+                ofSetCircleResolution(60);
+
+                ofSetColor(ofColor::white);
+                ofDrawCircle(0,0,animatedCircleSize.val()+1);
+
+                ofSetColor(ofColor::fromHex(0xB87167));
+                ofDrawCircle(0,0,animatedCircleSize.val());
+
+                ofDisableAlphaBlending();
+                ofDisableSmoothing();
+
+                ofPopStyle();
+                ofPopMatrix();
+
+            }else{
+                ofClear(255,255,255,0);
+                state = STATE_TNAME_IN;
+            }
+            tPhotoFbo.end();
 
         break;
-        case 7:
-            //show photo bombs;
+        case STATE_TNAME_IN:
+            //show tCOLOR NAME;
+            if(!animatedPhotoPos.hasFinishedAnimating()){
+                float dt = 1.0f / 60.0f;
+                animatedPhotoPos.update( dt );
+
+            }else{
+                if(tColorNameWaitCount<photoBombDelay){
+                    tColorNameWaitCount++;
+                }else{
+                    tColorNameWaitCount = 0;
+                    animatedPhotoPos.animateFromTo(0,screenHeight);
+                    state = STATE_PHOTO_BOMB;
+                }
+            }
+
 
         break;
-        case 8:
+        case STATE_PHOTO_BOMB:
+            //show PHOTO BOMB;
+
+
+            int photoBombCurrentPick;
+
+            if(photoBombOrderIndex ==0){ //first time
+                photoBombCurrentPick = *photoBombOrder.begin();
+                ofLog()<<"photoBombCurrentPick: "<<photoBombCurrentPick;
+                photoBombImg.load("tphotos/1-"+ofToString(photoBombCurrentPick)+"-mono.jpg");
+                photoBombOrderIndex++;
+                photoBombFbo.begin();
+                photoBombImg.draw(ofRandom(-200,200),ofRandom(-200,200), photoBombFbo.getWidth(),photoBombFbo.getHeight());
+                photoBombFbo.end();
+
+            }
+
+            if(photoBombSwitchWaitCount<photoBombSwitchDelay){
+                ofLog()<<"photoBombSwitchWaitCount: "<<photoBombSwitchWaitCount;
+                ofLog()<<"photoBombSwitchDelay: "<<photoBombSwitchDelay;
+
+                photoBombSwitchWaitCount++;
+            }else{
+                ofLog()<<"new delay";
+
+                //photoBombSwitchDelay =  pow((photoBombTotalNumb-photoBombOrderIndex),2)+10;   //new delay, shorter each time
+                photoBombSwitchDelay = photoBombSwitchSpeed+(int)(pow(photoBombTotalNumb-photoBombOrderIndex,2)/photoBombSwitchAccel);
+                photoBombSwitchWaitCount = 0; // reset counter
+
+                if(photoBombOrderIndex<photoBombTotalNumb){
+                    vector<int>::iterator it=photoBombOrder.begin()+photoBombOrderIndex;
+                    photoBombCurrentPick = *it;
+                    ofLog()<<"photoBombCurrentPick: "<<photoBombCurrentPick;
+                    photoBombImg.load("tphotos/1-"+ofToString(photoBombCurrentPick)+"-mono.jpg");
+
+                    photoBombOrderIndex++;
+                }else{
+                    photoBombSwitchWaitCount = 0;
+                    photoBombOrderIndex = 0;
+                    photoBombSwitchDelay = photoBombSwitchSpeed+(int)(pow(photoBombTotalNumb,2)/photoBombSwitchAccel);
+                    random_shuffle ( photoBombOrder.begin(), photoBombOrder.end() );
+                    
+                    photoBombFbo.begin();
+                    ofClear(255, 255, 255,0);
+                    photoBombFbo.end();
+
+                    state = STATE_PHOTO_BOMB_CLOSING;
+
+                }
+
+                photoBombFbo.begin();
+                photoBombImg.draw(ofRandom(-200,200),ofRandom(-200,200), photoBombFbo.getWidth(),photoBombFbo.getHeight());
+                photoBombFbo.end();
+
+            }
+
+
+        break;
+        case STATE_PHOTO_BOMB_CLOSING:
+            //show LAST PHOTO OF PHOTO BOMB : LOGO AND WHITE BACKGROUND;
+            if(photoBombClosingWaitCount<mapDelay){
+                photoBombClosingWaitCount++;
+            }else{
+                photoBombClosingWaitCount = 0;
+                state = STATE_MAP;
+            }
+            
+        break;
+        case STATE_MAP:
+            //show LAST PHOTO OF PHOTO BOMB : LOGO AND WHITE BACKGROUND;
+            
+        break;
+        case STATE_ENDING:
             //show ending;
 
             playAndPreload();
-            state = 0;
+            state = STATE_START;
 
         break;
+
 
 
         default:
@@ -189,10 +457,11 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+
     switch (state) {
         case STATE_START:
             //play movie loop;
-            
+
             movieFbo.draw((screenWidth-screenHeight)/2+canvasOffsetX,canvasOffsetY);
         break;
         case STATE_DETECTED:
@@ -201,46 +470,91 @@ void ofApp::draw(){
             ofPushMatrix();
             ofPushStyle();
             ofTranslate(screenWidth/2, screenHeight/2);
-            
+
+            ofEnableAlphaBlending();
+            ofEnableSmoothing();
+
             colorWheel.draw(0,-kPhotoFbo.getWidth()*0.045);
             drawFrame(-kPhotoFbo.getWidth()*0.11,-kPhotoFbo.getWidth()*0.15, kPhotoFbo.getWidth()*0.22, kPhotoFbo.getWidth()*0.305,ofColor::black);
             ofSetColor(ofColor::black);
             searchingFont.drawString("searching...", -searchingFont.stringWidth("searching...")/2, kPhotoFbo.getWidth()*0.04);
+
+            ofDisableAlphaBlending();
+            ofDisableSmoothing();
+
             ofPopStyle();
             ofPopMatrix();
+
 
 
         break;
         case STATE_KPHOTO_IN:
             //show kyoto photo, zoom, show text;
-            kPhotoFbo.draw((ofGetWidth()-ofGetHeight())/2,0);
+
+            ofEnableAlphaBlending();
+            ofEnableSmoothing();
+
+            kPhotoFbo.draw((screenWidth-screenHeight)/2,0);
+
+            ofDisableAlphaBlending();
+            ofDisableSmoothing();
 
 
         break;
         case STATE_KCOLOR_IN:
             //show kyoto color;
-            kPhotoFbo.draw((screenWidth-screenHeight)/2-kPhotoFboXoffset,0);
-            kColor.draw((screenWidth+screenHeight)/2-kPhotoFboXoffset,0,screenHeight,screenHeight);
+            kPhotoFbo.draw((screenWidth-screenHeight)/2-animatedPhotoPos.val(),0);
+            kColor.draw((screenWidth+screenHeight)/2-animatedPhotoPos.val(),0,screenHeight,screenHeight);
 
+
+        break;
+        case STATE_TCOLOR_IN:
+            //show taiwan color, pan in;
+            kColor.draw((screenWidth-screenHeight)/2-animatedPhotoPos.val(),0,screenHeight,screenHeight);
+            tColor.draw((screenWidth+screenHeight)/2-animatedPhotoPos.val(),0,screenHeight,screenHeight);
+
+
+        break;
+        case STATE_TPHOTO_IN:
+            //show taiwan photo, mono tone, show text;
+            tColor.draw((screenWidth-screenHeight)/2,0,screenHeight,screenHeight);
+            tPhotoFbo.draw((screenWidth-screenHeight)/2,0);
+
+        break;
+        case STATE_TCOLOR_FILL:
+            //show taiwan color;
+            tPhotoFbo.draw((screenWidth-screenHeight)/2,0);
+
+
+        break;
+        case STATE_TNAME_IN:
+            //show color name
+            ofPushStyle();
+            ofSetColor(ofColor::fromHex(0xB87167));
+            // todo:: need to have an array hold the color circle's pos and color on all 80 photos
+            ofDrawRectangle((screenWidth-screenHeight)/2,0,screenHeight,screenHeight);
+            ofPopStyle();
+            tName.draw((screenWidth+screenHeight)/2-animatedPhotoPos.val(),0,screenHeight,screenHeight);
+
+
+        break;
+        case STATE_PHOTO_BOMB:
+            //show PHOTO BOMB;
+            photoBombFbo.draw((screenWidth-screenHeight)/2,0);
+
+
+        break;
+        case STATE_PHOTO_BOMB_CLOSING:
+            //show LAST PHOTO OF PHOTO BOMB : LOGO AND WHITE BACKGROUND;
+            photoBombClosing.draw((screenWidth-screenHeight)/2,0,screenHeight,screenHeight);
+            
             
         break;
-        case 4:
-            //show taiwan color, pan in;
-
+        case STATE_MAP:
+            //show LAST PHOTO OF PHOTO BOMB : LOGO AND WHITE BACKGROUND;
+            
         break;
-        case 5:
-            //show taiwan photo, mono tone, show text;
-
-        break;
-        case 6:
-            //show taiwan color;
-
-        break;
-        case 7:
-            //show photo bombs;
-
-        break;
-        case 8:
+        case STATE_ENDING:
             //show ending;
 
         break;
@@ -249,30 +563,19 @@ void ofApp::draw(){
         break;
     }
 
+    ofPushStyle();
+    ofSetColor(0);
+    ofDrawRectangle(0, 0, (screenWidth-screenHeight)/2, screenHeight);
+    ofDrawRectangle((screenWidth+screenHeight)/2, 0, (screenWidth-screenHeight)/2, screenHeight);
 
-//
-//   //  glEnable(GL_BLEND);
-// //    glBlendFuncSeparate(GL_ONE, GL_ZERO, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-//
-//     //    glBlendFuncSeparate(GL_ONE, GL_SRC_COLOR, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-//
-//     ofPushStyle();
-// //    ofSetColor(255,255,255,255);
-//     ofSetRectMode(OF_RECTMODE_CENTER);
-//     colorCardFbo.draw(ofGetWidth()/2+maskOffsetX, ofGetHeight()/2+maskOffsetY);
-//     mask.draw(ofGetWidth()/2+maskOffsetX, ofGetHeight()/2+maskOffsetY);
-//     ofPopStyle();
-//
-    
-    
-
-
+    ofPopStyle();
 
     if (showInfo) {
         ofDrawBitmapString("Next Movie ID: "+ofToString(loadingMovieId), 50, 70);
         ofDrawBitmapString("Total Frames: "+ofToString(movies[nowPlayer].getTotalNumFrames()), 50, 100);
         ofDrawBitmapString("Current Frame: "+ofToString(movies[nowPlayer].getCurrentFrame()), 50, 130);
     }
+
 
 
 
@@ -323,7 +626,11 @@ void ofApp::keyPressed(int key){
             kPhoto.load("kPhotos/1.jpg");
             kPhotoInfo.load("kPhotos/1-info.jpg");
             kColor.load("kColors/1.jpg");
-
+            tColor.load("tColors/1.jpg");
+            tPhoto.load("tPhotos/1-1.jpg");
+            tPhotoMono.load("tPhotos/1-1-mono.jpg");
+            tPhotoMonoInfo.load("tPhotos/1-1-mono-info.jpg");
+            tName.load("tNames/1.jpg");
 
             state = STATE_DETECTED;
         break;
@@ -426,7 +733,7 @@ void ofApp::checkSerial(){
   else{
     ofLog()<<"detected color: "<< myByte;
     detectedColor = myByte;
-      
+
 //      kPhoto.load("kPhotos/1.jpg");
 //      kPhotoInfo.load("kPhotos/1-info.jpg");
 //      kColor.load("kColors/1.jpg");
@@ -448,7 +755,7 @@ void ofApp::drawFrame(float _x, float _y, float _w, float _h, ofColor c){
 
     path.draw();
 
-    
+
     ofSetColor(c.getInverted());
     ofPushMatrix();
     ofTranslate(_x+_w/2, _y+_h);
@@ -462,7 +769,7 @@ void ofApp::drawFrame(float _x, float _y, float _w, float _h, ofColor c){
 
 
 void ofApp::drawKPhoto(float _x, float _y, float _size){
-    
+
     kPhoto.draw(_x,_y,_size,_size);
 }
 
@@ -470,8 +777,10 @@ void ofApp::drawKPhoto(float _x, float _y, float _size){
 
 
 void ofApp::drawKPhotoInfo(float _x, float _y, float _size, float _alpha){
-    ofSetColor(255, 255, 255, _alpha);
-    kPhotoInfo.draw(_x,_y,_size,_size);
+    ofPushStyle();
+        ofSetColor(255, 255, 255, _alpha);
+        kPhotoInfo.draw(_x,_y,_size,_size);
+    ofPopStyle();
 }
 
 //--------------------------------------------------------------

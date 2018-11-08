@@ -3,6 +3,9 @@
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
 #include "spinningWheel.h"
+#include "ofxAnimatableFloat.h"
+#include <algorithm>    // std::random_shuffle
+#include <vector>       // std::vector
 
 
 
@@ -64,19 +67,52 @@ class ofApp : public ofBaseApp{
         ofTrueTypeFont	frameFont;
 
         SpinningWheel colorWheel;
-        float kPhotoSize;
     
         //photo related;
         ofImage kPhoto;
         ofImage kPhotoInfo;
         float   kPhotoInfoAlpha;
         ofFbo   kPhotoFbo;
-        int kPhotoInfoWaitCount;
-        int kColorDelay;
-        float kPhotoFboXoffset;
+        ofFbo   tPhotoFbo;
+        ofFbo   photoBombFbo;
         ofImage kColor;
+        ofImage tColor;
+        ofImage tPhoto;
+        ofImage tPhotoMono;
+        ofImage tPhotoMonoInfo;
+        ofImage tName;
+        ofImage photoBombImg;
+        vector<int>    photoBombOrder; //storing the order of photo bomb
+        int photoBombTotalNumb;
+        int photoBombOrderIndex =0;
+        ofImage photoBombClosing;
+    
+    
+        //timing related
+        int kPhotoInfoWaitCount; //counter for kPhoto being Idle
+        int kColorDelay;    //how long should kColor wait before comes in
+        int kColorWaitCount; //counter for kColor being Idle
+        int tColorDelay;    //how long should tColor wait before comes in
+        int tColorWaitCount; //counter for tColor being Idle
+        int tPhotoDelay;    //how long should tPhoto wait before comes in
+    
+        int tPhotoWaitCount;
+        int tPhotoMonoDelay;
+        int tPhotoMonoInfoDelay;
+        int tPhotoColorFillDelay;
+        int tColorNameWaitCount;
+        int photoBombDelay;
+        int photoBombSwitchWaitCount;
+        int photoBombSwitchDelay; //delay between each photo
+        int photoBombSwitchSpeed; //basic delay of switching, the higher the slower
+        int photoBombSwitchAccel; //acceleration of switching, the higher the faster
+        int photoBombClosingWaitCount;
+        int mapDelay;
 
-
+        //ofxAnimatable related;
+        ofxAnimatableFloat animatedPhotoPos;
+        ofxAnimatableFloat animatedPhotoSize;
+        ofxAnimatableFloat animatedCircleSize;
 
     
         //sensor related
@@ -88,7 +124,15 @@ class ofApp : public ofBaseApp{
             STATE_START = 0,
             STATE_DETECTED = 1,
             STATE_KPHOTO_IN = 2,
-            STATE_KCOLOR_IN = 3
+            STATE_KCOLOR_IN = 3,
+            STATE_TCOLOR_IN = 4,
+            STATE_TPHOTO_IN = 5,
+            STATE_TCOLOR_FILL = 6,
+            STATE_TNAME_IN = 7,
+            STATE_PHOTO_BOMB = 8,
+            STATE_PHOTO_BOMB_CLOSING = 9,
+            STATE_MAP = 10,
+            STATE_ENDING = 11
 
         };
 };
