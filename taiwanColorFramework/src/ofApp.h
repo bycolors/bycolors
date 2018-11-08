@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
-#include "ofxSvgLoader.h"
+#include "spinningWheel.h"
 
 
 
@@ -12,6 +12,8 @@ class ofApp : public ofBaseApp{
 		void setup();
 		void update();
 		void draw();
+		void exit();
+
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -24,36 +26,69 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+		void checkSerial();
+		void playMovie();
+
         void playAndPreload();
         void switchMovie();
-    
-        ofFbo   movieFbo;
-        ofFbo   colorCardFbo;
-        int     canvasOffsetX;
-        int     canvasOffsetY;
-        int     maskOffsetX;
-        int     maskOffsetY;
-        ofImage mask;
+        void drawFrame(float _x, float _y, float _w, float _h, ofColor c);
+        void drawKPhoto(float _x, float _y, float _size);
+        void resetKPhoto();
 
-    
-        ofAVFoundationPlayer  movies[2];
-        int            nowPlayer; //which movie player (only 2);
-        int            loadingMovieId; //what's name of next movie file
-        int            totalMovies;
-    
-        ofxXmlSettings XML;
-    
-        int     state;
-    
-        ofTrueTypeFont		infoFont;
-        ofTrueTypeFont		titleFont;
+        void drawKPhotoInfo(float _x, float _y, float _size, float _alpha);
+        void resetKPhotoInfo();
 
-        ofTrueTypeFont      jpFontBig;
-        ofImage             logoTop;
-        ofxSvgLoader        logoTopSVG;
-    
-        int                 titleScale;
 
+        //layout related
+        ofFbo	movieFbo;
+        int	canvasOffsetX;
+        int	canvasOffsetY;
+        int	maskOffsetX;
+        int	maskOffsetY;
+
+        //movie related
+        ofAVFoundationPlayer	movies[2];
+        int	nowPlayer; //which movie player (only 2);
+        int	loadingMovieId; //what's name of next movie file
+        int	totalMovies;
+
+        //control related
+        int	state;
         bool    showInfo;
+        ofxXmlSettings XML;
+        float screenWidth;
+        float screenHeight;
 
+        //graphics related
+        ofTrueTypeFont	searchingFont;
+        ofTrueTypeFont	frameFont;
+
+        SpinningWheel colorWheel;
+        float kPhotoSize;
+    
+        //photo related;
+        ofImage kPhoto;
+        ofImage kPhotoInfo;
+        float   kPhotoInfoAlpha;
+        ofFbo   kPhotoFbo;
+        int kPhotoInfoWaitCount;
+        int kColorDelay;
+        float kPhotoFboXoffset;
+        ofImage kColor;
+
+
+
+    
+        //sensor related
+        ofSerial    serial;
+        int detectedColor;
+    
+        enum Constants
+        {
+            STATE_START = 0,
+            STATE_DETECTED = 1,
+            STATE_KPHOTO_IN = 2,
+            STATE_KCOLOR_IN = 3
+
+        };
 };

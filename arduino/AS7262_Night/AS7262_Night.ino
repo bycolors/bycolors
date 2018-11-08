@@ -30,7 +30,7 @@ uint16_t sensorVals[AS726x_NUM_CHANNELS];
 //buffer to hold calibrated values (not used by default in this example)
 //float calibratedVals[AS726x_NUM_CHANNELS];
 
-bool debug = false;
+bool debug = true;
 
 long lastDetectedTime;
 uint16_t vVal;
@@ -141,7 +141,8 @@ void loop() {
         //measuring
         
         numOfSamples++;
-        //Serial.println(numOfSamples);
+//        Serial.print("num of sample");
+//        Serial.println(numOfSamples);
         
 //        printRawVals();
         if(numOfSamples<=1){
@@ -162,6 +163,12 @@ void loop() {
             avgColors[4]=round(oVal/100);
             avgColors[5]=round(rVal/100);
 //            printForCal();
+          int matchedColor = compareColors(avgColors);
+          if(debug){Serial.print("matching color: ");
+          Serial.println(matchedColor);}
+          else{
+            Serial.write(matchedColor);
+          }
           }
         }
 
@@ -175,12 +182,16 @@ void loop() {
           avgColors[5]=round(rAvg.getAverage());
           
           if(debug){printAvgVals();}
+
+          int matchedColor = compareColors(avgColors);
+          if(debug){Serial.print("matching color: ");
+          Serial.println(matchedColor);}
+          else{
+            Serial.write(matchedColor);
+          }
         }
        }
 
-      int matchedColor = compareColors(avgColors);
-      Serial.print("matching color: ");
-      Serial.println(matchedColor);
 
         
     }else{

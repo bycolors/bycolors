@@ -171,14 +171,14 @@
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
-			<key>45A0C6BA8B3F9A5094769970</key>
+			<key>BC054B7D3B48B395B1D87F2E</key>
 			<dict>
 				<key>fileRef</key>
-				<string>EF00A4B3EC46F0F316096FD7</string>
+				<string>904CD301F7BB14F91235B2E8</string>
 				<key>isa</key>
 				<string>PBXBuildFile</string>
 			</dict>
-			<key>EF00A4B3EC46F0F316096FD7</key>
+			<key>904CD301F7BB14F91235B2E8</key>
 			<dict>
 				<key>explicitFileType</key>
 				<string>sourcecode.cpp.cpp</string>
@@ -187,20 +187,20 @@
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>name</key>
-				<string>svgtiny_list.cpp</string>
+				<string>ofxAnimatableOfPoint.cpp</string>
 				<key>path</key>
-				<string>../../../addons/ofxSvgLoader/libs/svgTiny/src/svgtiny_list.cpp</string>
+				<string>../../../addons/ofxAnimatable/src/ofxAnimatableOfPoint.cpp</string>
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
-			<key>F9BA456A98A3891F541CC53D</key>
+			<key>2C61E47DDBFD642D87E63940</key>
 			<dict>
 				<key>fileRef</key>
-				<string>C15AC28AE73FFDF00C18C4C3</string>
+				<string>3E5B92DA6F38EA1F474E3EB7</string>
 				<key>isa</key>
 				<string>PBXBuildFile</string>
 			</dict>
-			<key>C15AC28AE73FFDF00C18C4C3</key>
+			<key>3E5B92DA6F38EA1F474E3EB7</key>
 			<dict>
 				<key>explicitFileType</key>
 				<string>sourcecode.cpp.cpp</string>
@@ -209,13 +209,13 @@
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>name</key>
-				<string>svgtiny_gradient.cpp</string>
+				<string>ofxAnimatableQueue.cpp</string>
 				<key>path</key>
-				<string>../../../addons/ofxSvgLoader/libs/svgTiny/src/svgtiny_gradient.cpp</string>
+				<string>../../../addons/ofxAnimatable/src/ofxAnimatableQueue.cpp</string>
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
-			<key>D83B9BF8A825C71A169FEF71</key>
+			<key>36B9B6CD565C4C6A5BE96680</key>
 			<dict>
 				<key>explicitFileType</key>
 				<string>sourcecode.c.h</string>
@@ -224,13 +224,13 @@
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>name</key>
-				<string>svgtiny.h</string>
+				<string>ofxAnimatable.h</string>
 				<key>path</key>
-				<string>../../../addons/ofxSvgLoader/libs/svgTiny/src/svgtiny.h</string>
+				<string>../../../addons/ofxAnimatable/src/ofxAnimatable.h</string>
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
-			<key>4E336EECEF24FE60C5234EB0</key>
+			<key>F85914DABCB335C508BB4238</key>
 			<dict>
 				<key>explicitFileType</key>
 				<string>sourcecode.c.h</string>
@@ -239,20 +239,20 @@
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>name</key>
-				<string>svgtiny_internal.h</string>
+				<string>ofxAnimatableQueue.h</string>
 				<key>path</key>
-				<string>../../../addons/ofxSvgLoader/libs/svgTiny/src/svgtiny_internal.h</string>
+				<string>../../../addons/ofxAnimatable/src/ofxAnimatableQueue.h</string>
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
-			<key>3BB2BA7AFF9E6D84AF73B36E</key>
+			<key>5D067CF087427621DD1E64B8</key>
 			<dict>
 				<key>fileRef</key>
-				<string>E91800427344129BA9B577A8</string>
+				<string>1C9E4AC6CF4626BA74F7E994</string>
 				<key>isa</key>
 				<string>PBXBuildFile</string>
 			</dict>
-			<key>E91800427344129BA9B577A8</key>
+			<key>1C9E4AC6CF4626BA74F7E994</key>
 			<dict>
 				<key>explicitFileType</key>
 				<string>sourcecode.cpp.cpp</string>
@@ -261,22 +261,93 @@
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>name</key>
-				<string>svgtiny.cpp</string>
+				<string>ofxAnimatableFloat.cpp</string>
 				<key>path</key>
-				<string>../../../addons/ofxSvgLoader/libs/svgTiny/src/svgtiny.cpp</string>
+				<string>../../../addons/ofxAnimatable/src/ofxAnimatableFloat.cpp</string>
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
-			<key>FA1ADF64D913941D58D90E63</key>
+			<key>6C6A6CF2AD309C3B58922071</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxAnimatableFloat.h</string>
+				<key>path</key>
+				<string>../../../addons/ofxAnimatable/src/ofxAnimatableFloat.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>52C77060FBB9307AEFDAE8C6</key>
+			<dict>
+				<key>fileRef</key>
+				<string>F7CFEE77982205D3F1496C03</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>F7CFEE77982205D3F1496C03</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxAnimatable.cpp</string>
+				<key>path</key>
+				<string>../../../addons/ofxAnimatable/src/ofxAnimatable.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>5FCA34E402E9C3A0C48F9FA9</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxAnimatableOfPoint.h</string>
+				<key>path</key>
+				<string>../../../addons/ofxAnimatable/src/ofxAnimatableOfPoint.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>5A6936A5770BEB310F3826AD</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxAnimatableOfColor.h</string>
+				<key>path</key>
+				<string>../../../addons/ofxAnimatable/src/ofxAnimatableOfColor.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>B8118C79E563998DA9D23B17</key>
 			<dict>
 				<key>children</key>
 				<array>
-					<string>5C1C5EEDEE1726CAF180D4FA</string>
-					<string>E91800427344129BA9B577A8</string>
-					<string>4E336EECEF24FE60C5234EB0</string>
-					<string>D83B9BF8A825C71A169FEF71</string>
-					<string>C15AC28AE73FFDF00C18C4C3</string>
-					<string>EF00A4B3EC46F0F316096FD7</string>
+					<string>777D89F9EECAC3FE2405D5D1</string>
+					<string>5A6936A5770BEB310F3826AD</string>
+					<string>5FCA34E402E9C3A0C48F9FA9</string>
+					<string>F7CFEE77982205D3F1496C03</string>
+					<string>6C6A6CF2AD309C3B58922071</string>
+					<string>1C9E4AC6CF4626BA74F7E994</string>
+					<string>F85914DABCB335C508BB4238</string>
+					<string>36B9B6CD565C4C6A5BE96680</string>
+					<string>3E5B92DA6F38EA1F474E3EB7</string>
+					<string>904CD301F7BB14F91235B2E8</string>
 				</array>
 				<key>isa</key>
 				<string>PBXGroup</string>
@@ -285,40 +356,27 @@
 				<key>sourceTree</key>
 				<string>&lt;group&gt;</string>
 			</dict>
-			<key>B9FDE493896381560FC41AC0</key>
+			<key>8D83D7AC476703EBECC1932D</key>
 			<dict>
 				<key>children</key>
 				<array>
-					<string>FA1ADF64D913941D58D90E63</string>
+					<string>B8118C79E563998DA9D23B17</string>
 				</array>
 				<key>isa</key>
 				<string>PBXGroup</string>
 				<key>name</key>
-				<string>svgTiny</string>
+				<string>ofxAnimatable</string>
 				<key>sourceTree</key>
 				<string>&lt;group&gt;</string>
 			</dict>
-			<key>FEFA88B43833356A9A9B4208</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>B9FDE493896381560FC41AC0</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>libs</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>94DB4D7602EAE4C3FB11791A</key>
+			<key>74D31933EE82E12834DB3B06</key>
 			<dict>
 				<key>fileRef</key>
-				<string>5C1C5EEDEE1726CAF180D4FA</string>
+				<string>777D89F9EECAC3FE2405D5D1</string>
 				<key>isa</key>
 				<string>PBXBuildFile</string>
 			</dict>
-			<key>5C1C5EEDEE1726CAF180D4FA</key>
+			<key>777D89F9EECAC3FE2405D5D1</key>
 			<dict>
 				<key>explicitFileType</key>
 				<string>sourcecode.cpp.cpp</string>
@@ -327,20 +385,35 @@
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>name</key>
-				<string>src_colors.cpp</string>
+				<string>ofxAnimatableOfColor.cpp</string>
 				<key>path</key>
-				<string>../../../addons/ofxSvgLoader/libs/svgTiny/src/src_colors.cpp</string>
+				<string>../../../addons/ofxAnimatable/src/ofxAnimatableOfColor.cpp</string>
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
-			<key>24E53321950C7F0638CE771B</key>
+			<key>ABF04A8503CBDE92604C0027</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>spinningWheel.h</string>
+				<key>path</key>
+				<string>src/spinningWheel.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>A187A3BF0351D0A81E258507</key>
 			<dict>
 				<key>fileRef</key>
-				<string>81A791E804E69C6609D9085B</string>
+				<string>FBA885C488AEBAE46ACAD8B6</string>
 				<key>isa</key>
 				<string>PBXBuildFile</string>
 			</dict>
-			<key>81A791E804E69C6609D9085B</key>
+			<key>FBA885C488AEBAE46ACAD8B6</key>
 			<dict>
 				<key>explicitFileType</key>
 				<string>sourcecode.cpp.cpp</string>
@@ -349,1430 +422,9 @@
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>name</key>
-				<string>ofxSvgLoader.cpp</string>
+				<string>spinningWheel.cpp</string>
 				<key>path</key>
-				<string>../../../addons/ofxSvgLoader/src/ofxSvgLoader.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>B071F6A3F0D5978E9637AB75</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxSvgLoader.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxSvgLoader/src/ofxSvgLoader.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>AA08F623521AD18D4407B638</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxSvgBase.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxSvgLoader/src/ofxSvgBase.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>D312016F653749193BE87CFF</key>
-			<dict>
-				<key>fileRef</key>
-				<string>3CE1BF488C57A151E3F57C86</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>3CE1BF488C57A151E3F57C86</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxSvgGroup.cpp</string>
-				<key>path</key>
-				<string>../../../addons/ofxSvgLoader/src/ofxSvgGroup.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>C6F985582DB2246149FA74A9</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxSvgGroup.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxSvgLoader/src/ofxSvgGroup.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>BFDDE9A6401A13DBFF944683</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>74B5E4E29D031AC517B025CC</string>
-					<string>C6F985582DB2246149FA74A9</string>
-					<string>3CE1BF488C57A151E3F57C86</string>
-					<string>AA08F623521AD18D4407B638</string>
-					<string>B071F6A3F0D5978E9637AB75</string>
-					<string>81A791E804E69C6609D9085B</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>src</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>DB633029EC1DDCDFF5568E2A</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>BFDDE9A6401A13DBFF944683</string>
-					<string>FEFA88B43833356A9A9B4208</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>ofxSvgLoader</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>67ECE1AA209B62B37AF80938</key>
-			<dict>
-				<key>fileRef</key>
-				<string>74B5E4E29D031AC517B025CC</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>74B5E4E29D031AC517B025CC</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxSvgBase.cpp</string>
-				<key>path</key>
-				<string>../../../addons/ofxSvgLoader/src/ofxSvgBase.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>773AA38F169F9C1E793528DC</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>lhash.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/lhash.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>6FAF79F4AD0DC48C239A0E3E</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>idea.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/idea.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>61A673E0354F5DD23699802A</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ebcdic.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/ebcdic.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>1AEDCF9A6D7A9C81A1FFFB82</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>cmac.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/cmac.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>AF53C1FCB4DC2DA249C71CE4</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>asn1t.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/asn1t.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>B65483D96A9E876D46C93373</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>srtp.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/srtp.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>8B1E1E0F1F7DF006BF6F4E80</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>dsa.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/dsa.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>B2D9BED8F594CFBBD0821E7E</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>mdc2.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/mdc2.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>5D05C2B0CBAFC3F9F2F693AF</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>tls1.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/tls1.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>E811E52684D14AA533F8D72B</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>whrlpool.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/whrlpool.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>EEC2734565C1EDDDE6616883</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ripemd.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/ripemd.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>1C0972A2A90100E10C49938E</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>rsa.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/rsa.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>5CAABABC5D465FF3E4FDBAA0</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ssl2.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/ssl2.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>17006150745E007FA32014F5</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>modes.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/modes.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>B1CC96657896D2F948104F3D</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>seed.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/seed.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>9E67C420F0790C0E12C99190</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ts.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/ts.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>56DAF0A34EFCF5E2A5E60386</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>rand.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/rand.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>7A6C877B8EC4F7438DED9FB4</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ecdh.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/ecdh.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>2A20F45E8472AF83015D687B</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ec.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/ec.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>9E41B5C932654328664C3743</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ocsp.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/ocsp.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>F0B21373033A0907CFFFD055</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>des.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/des.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>B3F27E813E1250126AA46F39</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>stack.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/stack.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>D1F2D509F3D753BBF52DAA19</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>rc4.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/rc4.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>98B916CABFC10AC9836EB352</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>cast.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/cast.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>26FD7792D0FC0533A46C4B0D</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>comp.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/comp.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>64D45D3FC56C30943AC64D5E</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>aes.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/aes.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>6B4197F8EF581E2F00041258</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>hmac.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/hmac.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>DE72DC98030465018D130E67</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>md4.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/md4.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>AA136346D730CE2FC0EC85CD</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>e_os2.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/e_os2.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>67AD080A2A62A398BC832D7A</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>evp.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/evp.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>C4CA054A26838033180F5EE5</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>camellia.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/camellia.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>A9AA9F290280E04944C1CEEE</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>srp.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/srp.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>16D8E1844A44453A0C287E72</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ssl.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/ssl.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>0B26945A52EE3207EE20D083</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>buffer.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/buffer.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>2A61AA76A834926F81F48ADC</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>async.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/async.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>2D45A496EFB9F361A92C1F2A</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ct.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/ct.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>D7D04840334F3A7A5E0022ED</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>obj_mac.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/obj_mac.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>413E48C985AFC06586413FB9</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>pkcs7.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/pkcs7.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>9D907A98D6FF2E95AE4FCFBE</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>opensslv.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/opensslv.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>B4F3FCB1CEE7B5D701F79122</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>crypto.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/crypto.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>7D3A8C6EA022F43F7B57C119</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>pkcs12.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/pkcs12.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>C373CBF6422737D147BA8B70</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>objects.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/objects.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>8F225C97B6ECA8B22FFB4B76</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>rc5.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/rc5.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>C388FEB5AAE4ED4271BE782D</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ecdsa.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/ecdsa.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>B400F6AD48F06E02F44FD05F</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>safestack.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/safestack.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>355218D9B12A28AD4F099029</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>txt_db.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/txt_db.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>4A941E617512F1E87E294653</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>x509_vfy.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/x509_vfy.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>5749F2535EC575188CD8B7EA</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>md5.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/md5.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>61CC1A2E0CC17BE6CE4A68F7</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>conf.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/conf.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>2A8E6EE70DD635A657EEEC99</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>x509v3.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/x509v3.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>DB8E8A3E7DBD341637059A64</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>dh.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/dh.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>101E00135DD5F4A88AA3119E</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>rc2.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/rc2.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>37A00AAE55CA7B437073B0C9</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>bio.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/bio.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>FDB04DA12ABAFBA5FFE217C9</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>opensslconf.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/opensslconf.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>C9FE1E8D2E9BC8B7F5D308C8</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>asn1.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/asn1.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>0ED9E7E17E11365C9F07BC90</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>symhacks.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/symhacks.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>3F9F5D5E3A4CDE45682F38E2</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>sha.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/sha.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>3FED4C887C37A3FD70D004E8</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ui.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/ui.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>D315839A1D24D10046025C0C</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>asn1_mac.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/asn1_mac.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>8A1254FD4FD7284078EEE55E</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>x509.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/x509.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>490DE03DA72EE341B37B4BBB</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>conf_api.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/conf_api.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>3196BB02FD710583AD1E8682</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>opensslconf_osx.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/opensslconf_osx.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>1D548216CC2978215BFDAC85</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>engine.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/engine.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>4882CC26D63610292CFADBE9</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>cms.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/cms.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>B62DC455BB791E69D877D3B6</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>blowfish.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/blowfish.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>4BF97AC133A743F7D2E222B6</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>bn.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/bn.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>A635ED74FA38F1EFA4AD206C</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>err.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/err.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>C04436216C2B8A5144183E83</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>dtls1.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/dtls1.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>FDC037DF46F0D26E4621F89B</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ossl_typ.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/ossl_typ.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>40F8AFFCAB8F69A35DA9FD2A</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ssl3.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/ssl3.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>5565E3718DB1D46F1214EBFC</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>md2.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/md2.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>D9A29C9DD4DFDF38F00ECF27</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>pem.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/pem.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>E78FB8975C07248217E531FA</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>kdf.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/kdf.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>70E25EBAAB745F09329DDB44</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>9A00A37CC5D4BF1FD1883438</string>
-					<string>E78FB8975C07248217E531FA</string>
-					<string>D9A29C9DD4DFDF38F00ECF27</string>
-					<string>5565E3718DB1D46F1214EBFC</string>
-					<string>40F8AFFCAB8F69A35DA9FD2A</string>
-					<string>FDC037DF46F0D26E4621F89B</string>
-					<string>C04436216C2B8A5144183E83</string>
-					<string>A635ED74FA38F1EFA4AD206C</string>
-					<string>4BF97AC133A743F7D2E222B6</string>
-					<string>B62DC455BB791E69D877D3B6</string>
-					<string>4882CC26D63610292CFADBE9</string>
-					<string>1D548216CC2978215BFDAC85</string>
-					<string>3196BB02FD710583AD1E8682</string>
-					<string>490DE03DA72EE341B37B4BBB</string>
-					<string>8A1254FD4FD7284078EEE55E</string>
-					<string>D315839A1D24D10046025C0C</string>
-					<string>3FED4C887C37A3FD70D004E8</string>
-					<string>3F9F5D5E3A4CDE45682F38E2</string>
-					<string>0ED9E7E17E11365C9F07BC90</string>
-					<string>C9FE1E8D2E9BC8B7F5D308C8</string>
-					<string>FDB04DA12ABAFBA5FFE217C9</string>
-					<string>37A00AAE55CA7B437073B0C9</string>
-					<string>101E00135DD5F4A88AA3119E</string>
-					<string>DB8E8A3E7DBD341637059A64</string>
-					<string>2A8E6EE70DD635A657EEEC99</string>
-					<string>61CC1A2E0CC17BE6CE4A68F7</string>
-					<string>5749F2535EC575188CD8B7EA</string>
-					<string>4A941E617512F1E87E294653</string>
-					<string>355218D9B12A28AD4F099029</string>
-					<string>B400F6AD48F06E02F44FD05F</string>
-					<string>C388FEB5AAE4ED4271BE782D</string>
-					<string>8F225C97B6ECA8B22FFB4B76</string>
-					<string>C373CBF6422737D147BA8B70</string>
-					<string>7D3A8C6EA022F43F7B57C119</string>
-					<string>B4F3FCB1CEE7B5D701F79122</string>
-					<string>9D907A98D6FF2E95AE4FCFBE</string>
-					<string>413E48C985AFC06586413FB9</string>
-					<string>D7D04840334F3A7A5E0022ED</string>
-					<string>2D45A496EFB9F361A92C1F2A</string>
-					<string>2A61AA76A834926F81F48ADC</string>
-					<string>0B26945A52EE3207EE20D083</string>
-					<string>16D8E1844A44453A0C287E72</string>
-					<string>A9AA9F290280E04944C1CEEE</string>
-					<string>C4CA054A26838033180F5EE5</string>
-					<string>67AD080A2A62A398BC832D7A</string>
-					<string>AA136346D730CE2FC0EC85CD</string>
-					<string>DE72DC98030465018D130E67</string>
-					<string>6B4197F8EF581E2F00041258</string>
-					<string>64D45D3FC56C30943AC64D5E</string>
-					<string>26FD7792D0FC0533A46C4B0D</string>
-					<string>98B916CABFC10AC9836EB352</string>
-					<string>D1F2D509F3D753BBF52DAA19</string>
-					<string>B3F27E813E1250126AA46F39</string>
-					<string>F0B21373033A0907CFFFD055</string>
-					<string>9E41B5C932654328664C3743</string>
-					<string>2A20F45E8472AF83015D687B</string>
-					<string>7A6C877B8EC4F7438DED9FB4</string>
-					<string>56DAF0A34EFCF5E2A5E60386</string>
-					<string>9E67C420F0790C0E12C99190</string>
-					<string>B1CC96657896D2F948104F3D</string>
-					<string>17006150745E007FA32014F5</string>
-					<string>5CAABABC5D465FF3E4FDBAA0</string>
-					<string>1C0972A2A90100E10C49938E</string>
-					<string>EEC2734565C1EDDDE6616883</string>
-					<string>E811E52684D14AA533F8D72B</string>
-					<string>5D05C2B0CBAFC3F9F2F693AF</string>
-					<string>B2D9BED8F594CFBBD0821E7E</string>
-					<string>8B1E1E0F1F7DF006BF6F4E80</string>
-					<string>B65483D96A9E876D46C93373</string>
-					<string>AF53C1FCB4DC2DA249C71CE4</string>
-					<string>1AEDCF9A6D7A9C81A1FFFB82</string>
-					<string>61A673E0354F5DD23699802A</string>
-					<string>6FAF79F4AD0DC48C239A0E3E</string>
-					<string>773AA38F169F9C1E793528DC</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>openssl</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>13C2436A78CDB4354594CA7D</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>70E25EBAAB745F09329DDB44</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>include</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>B2C98B62869583DB9FE30DA7</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>13C2436A78CDB4354594CA7D</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>openssl</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>959BC13926B6C962531CEF17</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>B2C98B62869583DB9FE30DA7</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>libs</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>9A00A37CC5D4BF1FD1883438</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>pem2.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/libs/openssl/include/openssl/pem2.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>7200EB1EC64977ED08AC0111</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxXmlPoco.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/src/ofxXmlPoco.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>0EFE45161A4E28BDE46D84D0</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>E9998694E5001F9CF0B13BF0</string>
-					<string>7200EB1EC64977ED08AC0111</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>src</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>0117D94CE0C695E5E5482BEC</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>0EFE45161A4E28BDE46D84D0</string>
-					<string>959BC13926B6C962531CEF17</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>ofxPoco</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>1C36947250DCB09A8A375C0C</key>
-			<dict>
-				<key>fileRef</key>
-				<string>E9998694E5001F9CF0B13BF0</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>E9998694E5001F9CF0B13BF0</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxXmlPoco.cpp</string>
-				<key>path</key>
-				<string>../../../addons/ofxPoco/src/ofxXmlPoco.cpp</string>
+				<string>src/spinningWheel.cpp</string>
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
@@ -1903,30 +555,11 @@ fi
 				<string>E4EB6923138AFD0F00A09F29</string>
 				<key>buildSettings</key>
 				<dict>
-					<key>OTHER_LDFLAGS</key>
-					<array>
-						<string>$(OF_CORE_FRAMEWORKS) $(OF_CORE_LIBS)</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoNetSSL.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoNet.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoCrypto.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoUtil.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoJSON.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoXML.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoFoundation.a</string>
-						<string>../../../addons/ofxPoco/libs/openssl/lib/osx/crypto.a</string>
-						<string>../../../addons/ofxPoco/libs/openssl/lib/osx/ssl.a</string>
-					</array>
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
-						<string>../../../addons/ofxPoco/libs/poco/include</string>
-						<string>../../../addons/ofxPoco/src</string>
-						<string>../../../addons/ofxPoco/libs/openssl/include</string>
-						<string>../../../addons/ofxSvgLoader/libs</string>
-						<string>../../../addons/ofxSvgLoader/libs/svgTiny</string>
-						<string>../../../addons/ofxSvgLoader/libs/svgTiny/src</string>
-						<string>../../../addons/ofxSvgLoader/src</string>
+						<string>../../../addons/ofxAnimatable/src</string>
 						<string>../../../addons/ofxXmlSettings/libs</string>
 						<string>../../../addons/ofxXmlSettings/src</string>
 					</array>
@@ -1985,30 +618,11 @@ fi
 				<string>E4EB6923138AFD0F00A09F29</string>
 				<key>buildSettings</key>
 				<dict>
-					<key>OTHER_LDFLAGS</key>
-					<array>
-						<string>$(OF_CORE_FRAMEWORKS) $(OF_CORE_LIBS)</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoNetSSL.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoNet.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoCrypto.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoUtil.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoJSON.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoXML.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoFoundation.a</string>
-						<string>../../../addons/ofxPoco/libs/openssl/lib/osx/crypto.a</string>
-						<string>../../../addons/ofxPoco/libs/openssl/lib/osx/ssl.a</string>
-					</array>
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
-						<string>../../../addons/ofxPoco/libs/poco/include</string>
-						<string>../../../addons/ofxPoco/src</string>
-						<string>../../../addons/ofxPoco/libs/openssl/include</string>
-						<string>../../../addons/ofxSvgLoader/libs</string>
-						<string>../../../addons/ofxSvgLoader/libs/svgTiny</string>
-						<string>../../../addons/ofxSvgLoader/libs/svgTiny/src</string>
-						<string>../../../addons/ofxSvgLoader/src</string>
+						<string>../../../addons/ofxAnimatable/src</string>
 						<string>../../../addons/ofxXmlSettings/libs</string>
 						<string>../../../addons/ofxXmlSettings/src</string>
 					</array>
@@ -2052,8 +666,7 @@ fi
 			<dict>
 				<key>children</key>
 				<array>
-					<string>0117D94CE0C695E5E5482BEC</string>
-					<string>DB633029EC1DDCDFF5568E2A</string>
+					<string>8D83D7AC476703EBECC1932D</string>
 					<string>1F4FB5C423662B96ADFDCC0B</string>
 				</array>
 				<key>isa</key>
@@ -2206,30 +819,11 @@ fi
 				<string>E4EB6923138AFD0F00A09F29</string>
 				<key>buildSettings</key>
 				<dict>
-					<key>OTHER_LDFLAGS</key>
-					<array>
-						<string>$(OF_CORE_FRAMEWORKS) $(OF_CORE_LIBS)</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoNetSSL.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoNet.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoCrypto.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoUtil.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoJSON.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoXML.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoFoundation.a</string>
-						<string>../../../addons/ofxPoco/libs/openssl/lib/osx/crypto.a</string>
-						<string>../../../addons/ofxPoco/libs/openssl/lib/osx/ssl.a</string>
-					</array>
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
-						<string>../../../addons/ofxPoco/libs/poco/include</string>
-						<string>../../../addons/ofxPoco/src</string>
-						<string>../../../addons/ofxPoco/libs/openssl/include</string>
-						<string>../../../addons/ofxSvgLoader/libs</string>
-						<string>../../../addons/ofxSvgLoader/libs/svgTiny</string>
-						<string>../../../addons/ofxSvgLoader/libs/svgTiny/src</string>
-						<string>../../../addons/ofxSvgLoader/src</string>
+						<string>../../../addons/ofxAnimatable/src</string>
 						<string>../../../addons/ofxXmlSettings/libs</string>
 						<string>../../../addons/ofxXmlSettings/src</string>
 					</array>
@@ -2286,30 +880,11 @@ fi
 				<string>E4EB6923138AFD0F00A09F29</string>
 				<key>buildSettings</key>
 				<dict>
-					<key>OTHER_LDFLAGS</key>
-					<array>
-						<string>$(OF_CORE_FRAMEWORKS) $(OF_CORE_LIBS)</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoNetSSL.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoNet.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoCrypto.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoUtil.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoJSON.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoXML.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoFoundation.a</string>
-						<string>../../../addons/ofxPoco/libs/openssl/lib/osx/crypto.a</string>
-						<string>../../../addons/ofxPoco/libs/openssl/lib/osx/ssl.a</string>
-					</array>
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
-						<string>../../../addons/ofxPoco/libs/poco/include</string>
-						<string>../../../addons/ofxPoco/src</string>
-						<string>../../../addons/ofxPoco/libs/openssl/include</string>
-						<string>../../../addons/ofxSvgLoader/libs</string>
-						<string>../../../addons/ofxSvgLoader/libs/svgTiny</string>
-						<string>../../../addons/ofxSvgLoader/libs/svgTiny/src</string>
-						<string>../../../addons/ofxSvgLoader/src</string>
+						<string>../../../addons/ofxAnimatable/src</string>
 						<string>../../../addons/ofxXmlSettings/libs</string>
 						<string>../../../addons/ofxXmlSettings/src</string>
 					</array>
@@ -2368,14 +943,12 @@ fi
 				<array>
 					<string>E4B69E200A3A1BDC003C02F2</string>
 					<string>E4B69E210A3A1BDC003C02F2</string>
-					<string>1C36947250DCB09A8A375C0C</string>
-					<string>67ECE1AA209B62B37AF80938</string>
-					<string>D312016F653749193BE87CFF</string>
-					<string>24E53321950C7F0638CE771B</string>
-					<string>94DB4D7602EAE4C3FB11791A</string>
-					<string>3BB2BA7AFF9E6D84AF73B36E</string>
-					<string>F9BA456A98A3891F541CC53D</string>
-					<string>45A0C6BA8B3F9A5094769970</string>
+					<string>A187A3BF0351D0A81E258507</string>
+					<string>74D31933EE82E12834DB3B06</string>
+					<string>52C77060FBB9307AEFDAE8C6</string>
+					<string>5D067CF087427621DD1E64B8</string>
+					<string>2C61E47DDBFD642D87E63940</string>
+					<string>BC054B7D3B48B395B1D87F2E</string>
 					<string>63B57AC5BF4EF088491E0317</string>
 					<string>5A4349E9754D6FA14C0F2A3A</string>
 					<string>9D44DC88EF9E7991B4A09951</string>
@@ -2462,30 +1035,11 @@ fi
 				<string>E4EB6923138AFD0F00A09F29</string>
 				<key>buildSettings</key>
 				<dict>
-					<key>OTHER_LDFLAGS</key>
-					<array>
-						<string>$(OF_CORE_FRAMEWORKS) $(OF_CORE_LIBS)</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoNetSSL.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoNet.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoCrypto.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoUtil.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoJSON.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoXML.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoFoundation.a</string>
-						<string>../../../addons/ofxPoco/libs/openssl/lib/osx/crypto.a</string>
-						<string>../../../addons/ofxPoco/libs/openssl/lib/osx/ssl.a</string>
-					</array>
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
-						<string>../../../addons/ofxPoco/libs/poco/include</string>
-						<string>../../../addons/ofxPoco/src</string>
-						<string>../../../addons/ofxPoco/libs/openssl/include</string>
-						<string>../../../addons/ofxSvgLoader/libs</string>
-						<string>../../../addons/ofxSvgLoader/libs/svgTiny</string>
-						<string>../../../addons/ofxSvgLoader/libs/svgTiny/src</string>
-						<string>../../../addons/ofxSvgLoader/src</string>
+						<string>../../../addons/ofxAnimatable/src</string>
 						<string>../../../addons/ofxXmlSettings/libs</string>
 						<string>../../../addons/ofxXmlSettings/src</string>
 					</array>
@@ -2529,30 +1083,11 @@ fi
 				<string>E4EB6923138AFD0F00A09F29</string>
 				<key>buildSettings</key>
 				<dict>
-					<key>OTHER_LDFLAGS</key>
-					<array>
-						<string>$(OF_CORE_FRAMEWORKS) $(OF_CORE_LIBS)</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoNetSSL.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoNet.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoCrypto.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoUtil.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoJSON.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoXML.a</string>
-						<string>../../../addons/ofxPoco/libs/poco/lib/osx/PocoFoundation.a</string>
-						<string>../../../addons/ofxPoco/libs/openssl/lib/osx/crypto.a</string>
-						<string>../../../addons/ofxPoco/libs/openssl/lib/osx/ssl.a</string>
-					</array>
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
-						<string>../../../addons/ofxPoco/libs/poco/include</string>
-						<string>../../../addons/ofxPoco/src</string>
-						<string>../../../addons/ofxPoco/libs/openssl/include</string>
-						<string>../../../addons/ofxSvgLoader/libs</string>
-						<string>../../../addons/ofxSvgLoader/libs/svgTiny</string>
-						<string>../../../addons/ofxSvgLoader/libs/svgTiny/src</string>
-						<string>../../../addons/ofxSvgLoader/src</string>
+						<string>../../../addons/ofxAnimatable/src</string>
 						<string>../../../addons/ofxXmlSettings/libs</string>
 						<string>../../../addons/ofxXmlSettings/src</string>
 					</array>
@@ -2597,6 +1132,8 @@ fi
 					<string>E4B69E1D0A3A1BDC003C02F2</string>
 					<string>E4B69E1E0A3A1BDC003C02F2</string>
 					<string>E4B69E1F0A3A1BDC003C02F2</string>
+					<string>FBA885C488AEBAE46ACAD8B6</string>
+					<string>ABF04A8503CBDE92604C0027</string>
 				</array>
 				<key>isa</key>
 				<string>PBXGroup</string>

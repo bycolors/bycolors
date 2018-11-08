@@ -1,3 +1,2 @@
-ofxPoco
-ofxSvgLoader
+ofxAnimatable
 ofxXmlSettings

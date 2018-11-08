@@ -1,6 +1,6 @@
 <position>
     <canvasOffsetX>0</canvasOffsetX>
-    <canvasOffsetY>0</canvasOffsetY>
-    <maskOffsetX>0</maskOffsetX>
-    <maskOffsetY>0</maskOffsetY>
+    <canvasOffsetY>-1</canvasOffsetY>
+    <maskOffsetX>1</maskOffsetX>
+    <maskOffsetY>-1</maskOffsetY>
 </position>

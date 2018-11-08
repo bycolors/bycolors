@@ -3,7 +3,7 @@
 #include "ofMain.h"
 
 class ofApp : public ofBaseApp{
-	
+
 	public:
 		void setup();
 		void update();
@@ -20,16 +20,16 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-		
+
 		ofTrueTypeFont		font;
 
         int			nBytesRead;					// how much did we read?
 		int			nTimesRead;					// how many times did we read?
-		float		readTime;					// when did we last read?				
+		float		readTime;					// when did we last read?
         unsigned char bytesReturned[21];
 
 		ofSerial	serial;
-    
+
         int         temp;
         int         vValue;
         int         bValue;
@@ -39,4 +39,3 @@ class ofApp : public ofBaseApp{
         int         rValue;
 
 };
-
