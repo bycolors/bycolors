@@ -45,6 +45,9 @@ void ofApp::setup(){
     kPhotoInfoAlpha = 0;
 
     // timing variable
+    kPhotoSmallWaitCount = 0;
+    kPhotoSmallHoldTime = 50;
+
     kPhotoInfoWaitCount = 0;
     kPhotoInfoHoldTime = 100;
     kColorWaitCount = 0;
@@ -93,13 +96,19 @@ void ofApp::setup(){
     
     animatedPhotoPos.animateFromTo(0, screenHeight);
     animatedPhotoPos.setDuration(0.5);
-    AnimCurve curve = (AnimCurve) (EASE_IN_EASE_OUT);
+    //AnimCurve curve = (AnimCurve) (EASE_IN_EASE_OUT);
+    AnimCurve curve = (AnimCurve) (EASE_OUT);
+
     animatedPhotoPos.setCurve( curve );
 
-    animatedPhotoSize.animateFromTo(screenHeight*0.2, screenHeight);
+    animatedPhotoSize.animateFromTo(screenHeight*0.22, screenHeight);
     animatedPhotoSize.setDuration(1);
     animatedPhotoSize.setCurve( curve );
-    
+
+    kPhotoPosYoffset.animateFromTo(-screenHeight*0.03, 0);
+    kPhotoPosYoffset.setDuration(1);
+    kPhotoPosYoffset.setCurve( curve );
+
 
     animatedCircleSize.animateFromTo(25, screenHeight*2);
     animatedCircleSize.setDuration(2);
@@ -157,20 +166,26 @@ void ofApp::update(){
         break;
         case STATE_KPHOTO_IN:
             //show kyoto photo, zoom, show text;
-            if(!animatedPhotoSize.hasFinishedAnimating()){
-                float dt = 1.0f / 60.0f;
-                animatedPhotoSize.update( dt );
+            if(kPhotoSmallWaitCount<kPhotoSmallHoldTime){
+                kPhotoSmallWaitCount++;
             }else{
-               // if(kPhotoInfoAlpha<255){
-                  //  kPhotoInfoAlpha+=5;
-               // }else{
-                    kPhotoInfoAlpha = 255;
-                    resetKPhoto();
-                    animatedPhotoSize.animateFromTo(screenHeight*0.2, screenHeight);
-                    state =STATE_KCOLOR_IN;
-                //}
-            }
+                if(!animatedPhotoSize.hasFinishedAnimating()){
+                    float dt = 1.0f / 60.0f;
+                    animatedPhotoSize.update( dt );
+                    kPhotoPosYoffset.update( dt );
+                }else{
+                   // if(kPhotoInfoAlpha<255){
+                      //  kPhotoInfoAlpha+=5;
+                   // }else{
+                        kPhotoInfoAlpha = 255;
+                        resetKPhoto();
+                        animatedPhotoSize.animateFromTo(screenHeight*0.22, screenHeight);
+                        kPhotoPosYoffset.animateFromTo(-screenHeight*0.03, 0);
 
+                        state =STATE_KCOLOR_IN;
+                    //}
+                }
+            }
 
             kPhotoFbo.begin();
                 ofPushMatrix();
@@ -181,7 +196,7 @@ void ofApp::update(){
                 ofEnableAlphaBlending();
                 ofEnableSmoothing();
 
-                drawKPhoto(0,0,animatedPhotoSize.val());
+                drawKPhoto(0,kPhotoPosYoffset,animatedPhotoSize.val());
 
                 drawKPhotoInfo(0,0,kPhotoFbo.getWidth(),kPhotoInfoAlpha);
 

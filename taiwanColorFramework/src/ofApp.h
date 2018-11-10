@@ -91,6 +91,9 @@ class ofApp : public ofBaseApp{
         float   endingAlpha;
     
         //timing related
+        int kPhotoSmallWaitCount;
+        int kPhotoSmallHoldTime;
+    
         int kPhotoInfoWaitCount; //counter for kPhotoInfo being Idle
         int kPhotoInfoHoldTime;    //how long should kPhotoInfo hold before next (kcolor)comes in
     
@@ -126,6 +129,7 @@ class ofApp : public ofBaseApp{
         //ofxAnimatable related;
         ofxAnimatableFloat animatedPhotoPos;
         ofxAnimatableFloat animatedPhotoSize;
+        ofxAnimatableFloat kPhotoPosYoffset;
         ofxAnimatableFloat animatedCircleSize;
 
     
