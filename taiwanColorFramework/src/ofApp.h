@@ -106,7 +106,7 @@ class ofApp : public ofBaseApp{
     
         int tPhotoWaitCount;
         int tPhotoHoldTime;
-        int tPhotoMonoHoldTime;
+        int tPhotoInfoHoldTime;
         int tPhotoMonoInfoHoldTime;
     
         int tColorNameWaitCount;

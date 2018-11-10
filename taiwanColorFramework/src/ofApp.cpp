@@ -56,8 +56,8 @@ void ofApp::setup(){
     tColorHoldTime = 100;
 
     tPhotoWaitCount = 0;
-    tPhotoHoldTime = 100;
-    tPhotoMonoHoldTime = 50;
+    tPhotoHoldTime = 50;
+    tPhotoInfoHoldTime = 100;
     tPhotoMonoInfoHoldTime = 100;
 
     tColorNameWaitCount = 0;
@@ -272,11 +272,11 @@ void ofApp::update(){
 
                     tPhotoImg.draw(0,0,tPhotoFbo.getWidth(),tPhotoFbo.getHeight());
 
-                }else if (tPhotoWaitCount<tPhotoHoldTime+tPhotoMonoHoldTime){ // hold tPhoto Mono
+                }else if (tPhotoWaitCount<tPhotoHoldTime+tPhotoInfoHoldTime){ // hold tPhoto Mono
 
-                    tPhotoMonoImg.draw(0,0,tPhotoFbo.getWidth(),tPhotoFbo.getHeight());
+                    tPhotoInfoImg.draw(0,0,tPhotoFbo.getWidth(),tPhotoFbo.getHeight());
 
-                }else if (tPhotoWaitCount<tPhotoHoldTime+tPhotoMonoHoldTime+tPhotoMonoInfoHoldTime){// hold tPhoto Mono Info
+                }else if (tPhotoWaitCount<tPhotoHoldTime+tPhotoInfoHoldTime+tPhotoMonoInfoHoldTime){// hold tPhoto Mono Info
 
                     tPhotoMonoInfoImg.draw(0,0,tPhotoFbo.getWidth(),tPhotoFbo.getHeight());
 
@@ -698,7 +698,7 @@ void ofApp::keyPressed(int key){
             tPhotoImg.load("tPhotos/tphoto-c1-1.jpg");
             tPhotoInfoImg.load("tPhotos/tphoto-c1-1-info.jpg");
             tPhotoMonoImg.load("tPhotos/tphoto-c1-1-mono.jpg");
-            tPhotoMonoInfoImg.load("tPhotos/tphoto-c1-1-mono.jpg");
+            tPhotoMonoInfoImg.load("tPhotos/tphoto-c1-1-mono-info.jpg");
             tNameImg.load("tNames/tname-1.jpg");
 
             state = STATE_DETECTED;
