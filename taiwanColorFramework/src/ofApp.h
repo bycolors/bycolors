@@ -76,6 +76,7 @@ class ofApp : public ofBaseApp{
         ofImage kColorImg;
         ofImage tColorImg;
         ofImage tPhotoImg;
+        ofImage tPhotoInfoImg;
         ofImage tPhotoMonoImg;
         ofImage tPhotoMonoInfoImg;
         ofImage tNameImg;
@@ -110,7 +111,10 @@ class ofApp : public ofBaseApp{
     
         int tColorNameWaitCount;
         int tColorNameHoldTime;
-    
+
+        int photoBombWaitCount;
+        int photoBombHoldTime; //delay before photo bomb
+
         int photoBombSwitchWaitCount;
         int photoBombSwitchHoldTime; //delay between each photo
     

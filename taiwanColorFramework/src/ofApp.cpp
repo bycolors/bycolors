@@ -63,6 +63,8 @@ void ofApp::setup(){
     tColorNameWaitCount = 0;
     tColorNameHoldTime = 100;
 
+    photoBombWaitCount = 0;
+    photoBombHoldTime = 50;
 
     photoBombTotalNumb = 10;
     photoBombOrderIndex = 0;
@@ -75,7 +77,7 @@ void ofApp::setup(){
     photoBombClosingHoldTime = 100;
 
     mapWaitCount = 0;
-    mapHoldTime = 200;
+    mapHoldTime = 100;
     mapSpeed = 300;
     
 
@@ -181,7 +183,7 @@ void ofApp::update(){
                         resetKPhoto();
                         animatedPhotoSize.animateFromTo(screenHeight*0.22, screenHeight);
                         kPhotoPosYoffset.animateFromTo(-screenHeight*0.03, 0);
-
+                        kPhotoSmallWaitCount = 0;
                         state =STATE_KCOLOR_IN;
                     //}
                 }
@@ -371,54 +373,65 @@ void ofApp::update(){
         case STATE_PHOTO_BOMB:
             //show PHOTO BOMB;
 
-
-            int photoBombCurrentPick;
-
-            if(photoBombOrderIndex ==0){ //first time
-                photoBombCurrentPick = *photoBombOrder.begin();
-                ofLog()<<"photoBombCurrentPick: "<<photoBombCurrentPick;
-                photoBombImg.load("tphotos/1-"+ofToString(photoBombCurrentPick)+"-mono.jpg");
-                photoBombOrderIndex++;
+            if(photoBombWaitCount< photoBombHoldTime){
+                photoBombWaitCount++;
                 photoBombFbo.begin();
-                photoBombImg.draw(ofRandom(-200,200),ofRandom(-200,200), photoBombFbo.getWidth(),photoBombFbo.getHeight());
+                    ofPushStyle();
+                    ofSetColor(ofColor::fromHex(0xB66D66));
+                    ofDrawRectangle(canvasOffsetX, canvasOffsetY, photoBombFbo.getWidth(), photoBombFbo.getHeight());
+                    ofPopStyle();
                 photoBombFbo.end();
 
-            }
-
-            if(photoBombSwitchWaitCount<photoBombSwitchHoldTime){
-                photoBombSwitchWaitCount++;
             }else{
-                ofLog()<<"new delay";
+                int photoBombCurrentPick;
 
-                //photoBombSwitchHoldTime =  pow((photoBombTotalNumb-photoBombOrderIndex),2)+10;   //new delay, shorter each time
-                photoBombSwitchHoldTime = photoBombSwitchSpeed+(int)(pow(photoBombTotalNumb-photoBombOrderIndex,2)/photoBombSwitchAccel);
-                photoBombSwitchWaitCount = 0; // reset counter
-
-                if(photoBombOrderIndex<photoBombTotalNumb){
-                    vector<int>::iterator it=photoBombOrder.begin()+photoBombOrderIndex;
-                    photoBombCurrentPick = *it;
+                if(photoBombOrderIndex ==0){ //first time
+                    photoBombCurrentPick = *photoBombOrder.begin();
                     ofLog()<<"photoBombCurrentPick: "<<photoBombCurrentPick;
                     photoBombImg.load("tphotos/1-"+ofToString(photoBombCurrentPick)+"-mono.jpg");
-
                     photoBombOrderIndex++;
-                }else{
-                    photoBombSwitchWaitCount = 0;
-                    photoBombOrderIndex = 0;
-                    photoBombSwitchHoldTime = photoBombSwitchSpeed+(int)(pow(photoBombTotalNumb,2)/photoBombSwitchAccel);
-                    random_shuffle ( photoBombOrder.begin(), photoBombOrder.end() );
                     
                     photoBombFbo.begin();
-                    ofClear(255, 255, 255,0);
+                    photoBombImg.draw(ofRandom(-200,200),ofRandom(-200,200), photoBombFbo.getWidth(),photoBombFbo.getHeight());
                     photoBombFbo.end();
-
-                    state = STATE_PHOTO_BOMB_CLOSING;
 
                 }
 
-                photoBombFbo.begin();
-                photoBombImg.draw(ofRandom(-200,200),ofRandom(-200,200), photoBombFbo.getWidth(),photoBombFbo.getHeight());
-                photoBombFbo.end();
+                if(photoBombSwitchWaitCount<photoBombSwitchHoldTime){
+                    photoBombSwitchWaitCount++;
+                }else{
+                    ofLog()<<"new delay";
 
+                    //photoBombSwitchHoldTime =  pow((photoBombTotalNumb-photoBombOrderIndex),2)+10;   //new delay, shorter each time
+                    photoBombSwitchHoldTime = photoBombSwitchSpeed+(int)(pow(photoBombTotalNumb-photoBombOrderIndex,2)/photoBombSwitchAccel);
+                    photoBombSwitchWaitCount = 0; // reset counter
+
+                    if(photoBombOrderIndex<photoBombTotalNumb){
+                        vector<int>::iterator it=photoBombOrder.begin()+photoBombOrderIndex;
+                        photoBombCurrentPick = *it;
+                        ofLog()<<"photoBombCurrentPick: "<<photoBombCurrentPick;
+                        photoBombImg.load("tphotos/1-"+ofToString(photoBombCurrentPick)+"-mono.jpg");
+
+                        photoBombOrderIndex++;
+                    }else{
+                        photoBombSwitchWaitCount = 0;
+                        photoBombOrderIndex = 0;
+                        photoBombSwitchHoldTime = photoBombSwitchSpeed+(int)(pow(photoBombTotalNumb,2)/photoBombSwitchAccel);
+                        random_shuffle ( photoBombOrder.begin(), photoBombOrder.end() );
+                        
+                        photoBombFbo.begin();
+                        ofClear(255, 255, 255,0);
+                        photoBombFbo.end();
+                        photoBombWaitCount =0;
+                        state = STATE_PHOTO_BOMB_CLOSING;
+
+                    }
+
+                    photoBombFbo.begin();
+                    photoBombImg.draw(ofRandom(-200,200),ofRandom(-200,200), photoBombFbo.getWidth(),photoBombFbo.getHeight());
+                    photoBombFbo.end();
+
+                }
             }
 
 
@@ -592,16 +605,12 @@ void ofApp::draw(){
         break;
         case STATE_PHOTO_BOMB:
             //show PHOTO BOMB;
-            ofPushStyle();
-            ofSetColor(255);
-            ofDrawRectangle((screenWidth-screenHeight)/2+canvasOffsetX,canvasOffsetY,screenHeight,screenHeight);
-            ofPopStyle();
 
             photoBombFbo.draw((screenWidth-screenHeight)/2,0);
-            ofPushStyle();
-            ofSetColor(ofColor::fromHex(0xB66D66));
-            ofDrawRectangle((screenWidth-screenHeight)/2+canvasOffsetX, screenHeight*0.954+canvasOffsetY, screenHeight, screenHeight*0.046);
-            ofPopStyle();
+//            ofPushStyle();
+//            ofSetColor(ofColor::fromHex(0xB66D66));
+//            ofDrawRectangle((screenWidth-screenHeight)/2+canvasOffsetX, screenHeight*0.954+canvasOffsetY, screenHeight, screenHeight*0.046);
+//            ofPopStyle();
 
 
         break;
@@ -687,8 +696,9 @@ void ofApp::keyPressed(int key){
             kColorImg.load("kColors/kcolor-1.jpg");
             tColorImg.load("tColors/tcolor-1.jpg");
             tPhotoImg.load("tPhotos/tphoto-c1-1.jpg");
+            tPhotoInfoImg.load("tPhotos/tphoto-c1-1-info.jpg");
             tPhotoMonoImg.load("tPhotos/tphoto-c1-1-mono.jpg");
-            tPhotoMonoInfoImg.load("tPhotos/1-1-mono-info.jpg");
+            tPhotoMonoInfoImg.load("tPhotos/tphoto-c1-1-mono.jpg");
             tNameImg.load("tNames/tname-1.jpg");
 
             state = STATE_DETECTED;
@@ -765,7 +775,7 @@ void ofApp::updateMovie(){
 
   int totalFrames = movies[nowPlayer].getTotalNumFrames();
   int currentFrame = movies[nowPlayer].getCurrentFrame();
-  if((currentFrame>0) && (totalFrames-currentFrame <2000)){
+  if((currentFrame>0) && (totalFrames-currentFrame <1)){
       ofLog()<<"movie is done";
       // swap video player I    D
       switchMovie();
