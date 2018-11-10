@@ -45,12 +45,16 @@ void SpinningWheel::setup(float _or, float _ir, float _sd){
 }
 
 void SpinningWheel::update(){
-    if(angle<360)    angle+=rotateSpeed;
-    else angle = 0;
+    if(angle<360){
+        angle+=rotateSpeed;
+        times++;
+
+    }else{
+        angle = 0;
+    }
     
     if(index>16){
         index = 0;
-        times++;
     }else{
         index++;
     }

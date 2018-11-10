@@ -30,7 +30,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		void checkSerial();
-		void playMovie();
+		void updateMovie();
 
         void playAndPreload();
         void switchMovie();
@@ -46,8 +46,6 @@ class ofApp : public ofBaseApp{
         ofFbo	movieFbo;
         int	canvasOffsetX;
         int	canvasOffsetY;
-        int	maskOffsetX;
-        int	maskOffsetY;
 
         //movie related
         ofAVFoundationPlayer	movies[2];
@@ -69,46 +67,62 @@ class ofApp : public ofBaseApp{
         SpinningWheel colorWheel;
     
         //photo related;
-        ofImage kPhoto;
-        ofImage kPhotoInfo;
+        ofImage kPhotoImg;
+        ofImage kPhotoInfoImg;
         float   kPhotoInfoAlpha;
         ofFbo   kPhotoFbo;
         ofFbo   tPhotoFbo;
         ofFbo   photoBombFbo;
-        ofImage kColor;
-        ofImage tColor;
-        ofImage tPhoto;
-        ofImage tPhotoMono;
-        ofImage tPhotoMonoInfo;
-        ofImage tName;
+        ofImage kColorImg;
+        ofImage tColorImg;
+        ofImage tPhotoImg;
+        ofImage tPhotoMonoImg;
+        ofImage tPhotoMonoInfoImg;
+        ofImage tNameImg;
         ofImage photoBombImg;
         vector<int>    photoBombOrder; //storing the order of photo bomb
         int photoBombTotalNumb;
         int photoBombOrderIndex =0;
-        ofImage photoBombClosing;
-    
+        ofImage photoBombClosingImg;
+        ofImage mapAImg;
+        ofImage mapBImg;
+        int   mapSpeed;
+        ofImage endingImg;
+        float   endingAlpha;
     
         //timing related
-        int kPhotoInfoWaitCount; //counter for kPhoto being Idle
-        int kColorDelay;    //how long should kColor wait before comes in
+        int kPhotoInfoWaitCount; //counter for kPhotoInfo being Idle
+        int kPhotoInfoHoldTime;    //how long should kPhotoInfo hold before next (kcolor)comes in
+    
         int kColorWaitCount; //counter for kColor being Idle
-        int tColorDelay;    //how long should tColor wait before comes in
+        int kColorHoldTime;    //how long should kColor hold
+    
         int tColorWaitCount; //counter for tColor being Idle
-        int tPhotoDelay;    //how long should tPhoto wait before comes in
+        int tColorHoldTime;    //how long should tColor hold
     
         int tPhotoWaitCount;
-        int tPhotoMonoDelay;
-        int tPhotoMonoInfoDelay;
-        int tPhotoColorFillDelay;
+        int tPhotoHoldTime;
+        int tPhotoMonoHoldTime;
+        int tPhotoMonoInfoHoldTime;
+    
         int tColorNameWaitCount;
-        int photoBombDelay;
+        int tColorNameHoldTime;
+    
         int photoBombSwitchWaitCount;
-        int photoBombSwitchDelay; //delay between each photo
+        int photoBombSwitchHoldTime; //delay between each photo
+    
         int photoBombSwitchSpeed; //basic delay of switching, the higher the slower
         int photoBombSwitchAccel; //acceleration of switching, the higher the faster
+    
         int photoBombClosingWaitCount;
-        int mapDelay;
+        int photoBombClosingHoldTime;
 
+        int mapWaitCount;
+        int mapHoldTime;
+    
+        int endingWaitCount;
+        int endingHoldTime;
+    
         //ofxAnimatable related;
         ofxAnimatableFloat animatedPhotoPos;
         ofxAnimatableFloat animatedPhotoSize;
