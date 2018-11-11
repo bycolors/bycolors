@@ -40,6 +40,7 @@ class ofApp : public ofBaseApp{
 
         void drawKPhotoInfo(float _x, float _y, float _size, float _alpha);
         void resetKPhotoInfo();
+        void loadAssets(int _numOfColor);
 
 
         //layout related
@@ -90,6 +91,7 @@ class ofApp : public ofBaseApp{
         int   mapSpeed;
         ofImage endingImg;
         float   endingAlpha;
+        float   tPhotoScanBarPos;
     
         //timing related
         int kPhotoSmallWaitCount;
@@ -156,5 +158,26 @@ class ofApp : public ofBaseApp{
             STATE_MAP = 10,
             STATE_ENDING = 11
 
+        };
+    
+    
+        struct colorPicker{
+            float x;
+            float y;
+            ofColor hexColor;
+        };
+    
+        colorPicker allColorPickers[10]={
+            //tPhoto-c1-1-mono-info ~ tPhoto-c1-10-mono-info
+            {980,270,ofColor::fromHex(0xB87167)},
+            {0,0,ofColor::fromHex(0xB87167)},
+            {0,0,ofColor::fromHex(0xB87167)},
+            {0,0,ofColor::fromHex(0xB87167)},
+            {0,0,ofColor::fromHex(0xB87167)},
+            {0,0,ofColor::fromHex(0xB87167)},
+            {0,0,ofColor::fromHex(0xB87167)},
+            {0,0,ofColor::fromHex(0xB87167)},
+            {0,0,ofColor::fromHex(0xB87167)},
+            {0,0,ofColor::fromHex(0xB87167)}
         };
 };

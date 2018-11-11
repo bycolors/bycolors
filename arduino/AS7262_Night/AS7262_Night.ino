@@ -165,9 +165,9 @@ void loop() {
 //            printForCal();
           int matchedColor = compareColors(avgColors);
           if(debug){Serial.print("matching color: ");
-          Serial.println(matchedColor);}
+          Serial.println(matchedColor+1);}
           else{
-            Serial.write(matchedColor);
+            Serial.write(matchedColor+1);
           }
           }
         }

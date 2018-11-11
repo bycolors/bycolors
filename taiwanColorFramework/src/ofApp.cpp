@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
+   
     ofLog()<<"screen resolution: "<<ofGetWidth()<<" x "<<ofGetHeight();
     screenWidth = ofGetWidth();
     screenHeight = ofGetHeight();
@@ -12,7 +13,7 @@ void ofApp::setup(){
   	vector <ofSerialDeviceInfo> deviceList = serial.getDeviceList();
     int baud = 9600;
   	serial.setup(1, baud); //open the first device
-    detectedColor = 0;
+    detectedColor = 1;
 
     ofBackground(0, 0, 0);
     ofSetVerticalSync(true);
@@ -88,8 +89,12 @@ void ofApp::setup(){
     
     ofLog()<<"photo bomb order";
     // set some values and shuffle it
-    for (int i=0; i<photoBombTotalNumb; ++i) photoBombOrder.push_back(i); // 1 2 3 4 5 6 7 8 9
+    for (int i=1; i<photoBombTotalNumb+1; ++i) photoBombOrder.push_back(i); // 1 2 3 4 5 6 7 8 9 10
     random_shuffle ( photoBombOrder.begin(), photoBombOrder.end() );
+    
+    for (std::vector<int>::const_iterator it = photoBombOrder.begin(); it != photoBombOrder.end(); ++it)
+        std::cout << *it << ' ';
+    
 
     photoBombClosingImg.load("photoBombClosing.jpg");
     mapAImg.load("mapA.jpg");
@@ -119,6 +124,7 @@ void ofApp::setup(){
 
     animatedCircleSize.setCurve( curve2 );
 
+    tPhotoScanBarPos = 0;
 
     colorWheel.setup(screenHeight*0.051,screenHeight*0.037,2.625); //outter radius, inner radius, rotation speed
 
@@ -275,6 +281,7 @@ void ofApp::update(){
                 }else if (tPhotoWaitCount<tPhotoHoldTime+tPhotoInfoHoldTime){ // hold tPhoto Mono
 
                     tPhotoInfoImg.draw(0,0,tPhotoFbo.getWidth(),tPhotoFbo.getHeight());
+                    
 
                 }else if (tPhotoWaitCount<tPhotoHoldTime+tPhotoInfoHoldTime+tPhotoMonoInfoHoldTime){// hold tPhoto Mono Info
 
@@ -285,14 +292,14 @@ void ofApp::update(){
                     ofEnableAlphaBlending();
                     ofEnableSmoothing();
 
-                    ofTranslate(tPhotoFbo.getWidth()*980/1080,tPhotoFbo.getHeight()*270/1080);
+                    ofTranslate(tPhotoFbo.getWidth()*allColorPickers[detectedColor-1].x/1080,tPhotoFbo.getHeight()*allColorPickers[detectedColor-1].y/1080);
                     // todo:: need to have an array hold the color circle's pos and color on all 80 photos
 
                     ofSetColor(ofColor::white);
                     ofSetCircleResolution(60);
                     ofDrawCircle(0,0,25+1);
 
-                    ofSetColor(ofColor::fromHex(0xB87167));
+                    ofSetColor(allColorPickers[detectedColor-1].hexColor);
                     ofDrawCircle(0,0,25);
 
                     ofDisableAlphaBlending();
@@ -318,6 +325,7 @@ void ofApp::update(){
         case STATE_TCOLOR_FILL:
             //taiwan color fill;
             tPhotoFbo.begin();
+            
 
             if(!animatedCircleSize.hasFinishedAnimating()){
                 float dt = 1.0f / 60.0f;
@@ -328,7 +336,7 @@ void ofApp::update(){
                 ofEnableAlphaBlending();
                 ofEnableSmoothing();
 
-                ofTranslate(tPhotoFbo.getWidth()*980/1080,tPhotoFbo.getHeight()*270/1080);
+                ofTranslate(tPhotoFbo.getWidth()*allColorPickers[detectedColor-1].x/1080,tPhotoFbo.getHeight()*allColorPickers[detectedColor-1].y/1080); // using 0 starting numbering system
                 // todo:: need to have an array hold the color circle's pos and color on all 80 photos
 
                 ofSetCircleResolution(60);
@@ -336,7 +344,7 @@ void ofApp::update(){
                 ofSetColor(ofColor::white);
                 ofDrawCircle(0,0,animatedCircleSize.val()+1);
 
-                ofSetColor(ofColor::fromHex(0xB87167));
+                ofSetColor(allColorPickers[detectedColor-1].hexColor);
                 ofDrawCircle(0,0,animatedCircleSize.val());
 
                 ofDisableAlphaBlending();
@@ -377,7 +385,7 @@ void ofApp::update(){
                 photoBombWaitCount++;
                 photoBombFbo.begin();
                     ofPushStyle();
-                    ofSetColor(ofColor::fromHex(0xB66D66));
+                    ofSetColor(allColorPickers[detectedColor-1].hexColor);// using 0 starting numbering system
                     ofDrawRectangle(canvasOffsetX, canvasOffsetY, photoBombFbo.getWidth(), photoBombFbo.getHeight());
                     ofPopStyle();
                 photoBombFbo.end();
@@ -388,7 +396,7 @@ void ofApp::update(){
                 if(photoBombOrderIndex ==0){ //first time
                     photoBombCurrentPick = *photoBombOrder.begin();
                     ofLog()<<"photoBombCurrentPick: "<<photoBombCurrentPick;
-                    photoBombImg.load("tphotos/1-"+ofToString(photoBombCurrentPick)+"-mono.jpg");
+                    photoBombImg.load("tPhotoBomb/tphotoBomb-c"+ofToString(detectedColor)+"-"+ofToString(photoBombCurrentPick)+".jpg");
                     photoBombOrderIndex++;
                     
                     photoBombFbo.begin();
@@ -595,7 +603,7 @@ void ofApp::draw(){
         case STATE_TNAME_IN:
             //show color name
             ofPushStyle();
-            ofSetColor(ofColor::fromHex(0xB87167));
+            ofSetColor(allColorPickers[detectedColor-1].hexColor);
             // todo:: need to have an array hold the color circle's pos and color on all 80 photos
             ofDrawRectangle((screenWidth-screenHeight)/2+canvasOffsetX,canvasOffsetY,screenHeight,screenHeight);
             ofPopStyle();
@@ -691,16 +699,7 @@ void ofApp::keyPressed(int key){
             state = STATE_START;
         break;
         case '1':
-            kPhotoImg.load("kPhotos/kphoto-1.jpg");
-            kPhotoInfoImg.load("kPhotos/kphoto-1-info.jpg");
-            kColorImg.load("kColors/kcolor-1.jpg");
-            tColorImg.load("tColors/tcolor-1.jpg");
-            tPhotoImg.load("tPhotos/tphoto-c1-1.jpg");
-            tPhotoInfoImg.load("tPhotos/tphoto-c1-1-info.jpg");
-            tPhotoMonoImg.load("tPhotos/tphoto-c1-1-mono.jpg");
-            tPhotoMonoInfoImg.load("tPhotos/tphoto-c1-1-mono-info.jpg");
-            tNameImg.load("tNames/tname-1.jpg");
-
+            loadAssets(1);
             state = STATE_DETECTED;
         break;
         case '2':
@@ -810,6 +809,7 @@ void ofApp::checkSerial(){
 //      kPhotoInfo.load("kPhotos/1-info.jpg");
 //      kColor.load("kColors/1.jpg");
 
+    loadAssets(detectedColor);
     state = STATE_DETECTED;
   }
 }
@@ -867,6 +867,28 @@ void ofApp::resetKPhotoInfo(){
     kPhotoInfoWaitCount = 0;
 }
 
+//--------------------------------------------------------------
+
+
+void ofApp::loadAssets(int _numOfColor){
+    
+    string colorNumber = ofToString(_numOfColor);
+    
+    kPhotoImg.load("kPhotos/kphoto-c"+colorNumber+".jpg");
+    kPhotoInfoImg.load("kPhotos/kphoto-c"+colorNumber+"-info.jpg");
+    kColorImg.load("kColors/kcolor-c"+colorNumber+".jpg");
+    tColorImg.load("tColors/tcolor-c"+colorNumber+".jpg");
+    
+    //string tPhotoSubNumber = ofToString((int)ofRandom(photoBombTotalNumb)+1); todo:: test this
+    string tPhotoSubNumber = ofToString(1);
+
+    tPhotoImg.load("tPhotos/tphoto-c"+colorNumber+"-"+tPhotoSubNumber+".jpg");
+    tPhotoInfoImg.load("tPhotos/tphoto-c"+colorNumber+"-"+tPhotoSubNumber+"-info.jpg");
+    tPhotoMonoImg.load("tPhotos/tphoto-c"+colorNumber+"-"+tPhotoSubNumber+"-mono.jpg");
+    tPhotoMonoInfoImg.load("tPhotos/tphoto-c"+colorNumber+"-"+tPhotoSubNumber+"-mono-info.jpg");
+    tNameImg.load("tNames/tname-c"+colorNumber+".jpg");
+
+}
 
 
 //--------------------------------------------------------------
