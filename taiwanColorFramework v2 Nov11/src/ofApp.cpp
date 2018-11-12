@@ -45,7 +45,7 @@ void ofApp::setup(){
     kPhotoFbo.end();
 
     fadingFbo.begin();
-    ofClear(255, 255, 255,0);
+    ofClear(0, 0, 0,0);
     fadingFbo.end();
 
     tPhotoFbo.begin();
@@ -68,7 +68,6 @@ void ofApp::setup(){
     searchingFont.load("Skia.ttf", 17);
     frameFont.load("Skia.ttf", 24);
 
-    kPhotoMonoInfoAlpha = 0;
     crossFadeSpeed = 5;
 
     // timing variable
@@ -190,6 +189,36 @@ void ofApp::update(){
             }else{
                 colorWheel.resetTimes();
                 state = STATE_KPHOTO_IN;
+                //prepare for next scene
+                kPhotoFbo.begin();
+                ofPushMatrix();
+                ofPushStyle();
+                
+                ofSetColor(0);
+                ofDrawRectangle(0, 0, kPhotoFbo.getWidth(), kPhotoFbo.getHeight());
+                
+                ofTranslate(kPhotoFbo.getWidth()/2, kPhotoFbo.getHeight()/2);
+                ofSetRectMode(OF_RECTMODE_CENTER);
+                
+                ofEnableAlphaBlending();
+                ofEnableSmoothing();
+                
+                ofSetColor(255, 255, 255);
+                kPhotoImg.draw(0,kPhotoPosYoffset,animatedPhotoSize.val(),animatedPhotoSize.val());
+                
+            
+                ofSetRectMode(OF_RECTMODE_CORNER);
+                drawFrame(-kPhotoFbo.getWidth()*0.11,-kPhotoFbo.getWidth()*0.15, kPhotoFbo.getWidth()*0.22, kPhotoFbo.getWidth()*0.305,ofColor::white);
+                
+                ofDisableAlphaBlending();
+                ofDisableSmoothing();
+                
+                
+                ofPopStyle();
+                ofPopMatrix();
+                
+                kPhotoFbo.end();
+
             }
         break;
 
@@ -227,10 +256,10 @@ void ofApp::update(){
 
                 ofEnableAlphaBlending();
                 ofEnableSmoothing();
+            
+                ofSetColor(255, 255, 255);
+                kPhotoImg.draw(0,kPhotoPosYoffset,animatedPhotoSize.val(),animatedPhotoSize.val());
 
-                drawKPhoto(0,kPhotoPosYoffset,animatedPhotoSize.val(),255);
-
-                drawkPhotoMonoInfo(0,0,kPhotoFbo.getWidth(),kPhotoMonoInfoAlpha);
 
                 ofSetRectMode(OF_RECTMODE_CORNER);
                 drawFrame(-kPhotoFbo.getWidth()*0.11,-kPhotoFbo.getWidth()*0.15, kPhotoFbo.getWidth()*0.22, kPhotoFbo.getWidth()*0.305,ofColor::white);
@@ -955,27 +984,6 @@ void ofApp::drawFrame(float _x, float _y, float _w, float _h, ofColor c){
 
 //--------------------------------------------------------------
 
-
-void ofApp::drawKPhoto(float _x, float _y, float _size,float _alpha){
-    ofPushStyle();
-    ofSetColor(255, 255, 255, _alpha);
-    kPhotoImg.draw(_x,_y,_size,_size);
-    ofPopStyle();
-
-}
-
-//--------------------------------------------------------------
-
-
-void ofApp::drawkPhotoMonoInfo(float _x, float _y, float _size, float _alpha){
-    ofPushStyle();
-        ofSetColor(255, 255, 255, _alpha);
-        kPhotoMonoInfoImg.draw(_x,_y,_size,_size);
-    ofPopStyle();
-}
-
-//--------------------------------------------------------------
-
 void ofApp::kPhotoCrossFade(){
     fadingFbo.begin();
     shader.begin();
@@ -992,7 +1000,6 @@ void ofApp::kPhotoCrossFade(){
 //--------------------------------------------------------------
 
 void ofApp::resetkPhotoMonoInfo(){
-    kPhotoMonoInfoAlpha = 0;
     frameCounter = 0;
 }
 

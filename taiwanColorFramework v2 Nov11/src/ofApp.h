@@ -35,9 +35,7 @@ class ofApp : public ofBaseApp{
         void playAndPreload();
         void switchMovie();
         void drawFrame(float _x, float _y, float _w, float _h, ofColor c);
-        void drawKPhoto(float _x, float _y, float _size,float _alpha);
 
-        void drawkPhotoMonoInfo(float _x, float _y, float _size, float _alpha);
         void resetkPhotoMonoInfo();
         void loadAssets(int _numOfColor);
         void kPhotoCrossFade();
@@ -85,7 +83,6 @@ class ofApp : public ofBaseApp{
         ofImage kPhotoMonoInfoImg;
         ofImage kPhotoMonoImg;
     
-        float   kPhotoMonoInfoAlpha;
         ofFbo   kPhotoFbo;
         ofFbo   fadingFbo;
         ofFbo   tPhotoFbo;
