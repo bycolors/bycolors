@@ -47,22 +47,22 @@ void ofApp::setup(){
 
     // timing variable
     kPhotoSmallWaitCount = 0;
-    kPhotoSmallHoldTime = 50;
+    kPhotoSmallHoldTime = 100;
 
     kPhotoInfoWaitCount = 0;
-    kPhotoInfoHoldTime = 100;
+    kPhotoInfoHoldTime = 200;
     kColorWaitCount = 0;
-    kColorHoldTime = 100;
+    kColorHoldTime = 200;
     tColorWaitCount = 0;
-    tColorHoldTime = 100;
+    tColorHoldTime = 200;
 
     tPhotoWaitCount = 0;
-    tPhotoHoldTime = 50;
-    tPhotoInfoHoldTime = 100;
-    tPhotoMonoInfoHoldTime = 100;
+    tPhotoHoldTime = 100;
+    tPhotoInfoHoldTime = 200;
+    tPhotoMonoInfoHoldTime = 200;
 
     tColorNameWaitCount = 0;
-    tColorNameHoldTime = 100;
+    tColorNameHoldTime = 200;
 
     photoBombWaitCount = 0;
     photoBombHoldTime = 50;
@@ -75,22 +75,22 @@ void ofApp::setup(){
     photoBombSwitchHoldTime = photoBombSwitchSpeed+(int)(pow(photoBombTotalNumb,2)/photoBombSwitchAccel);
 
     photoBombClosingWaitCount = 0;
-    photoBombClosingHoldTime = 100;
+    photoBombClosingHoldTime = 200;
 
     mapWaitCount = 0;
-    mapHoldTime = 100;
+    mapHoldTime = 200;
     mapSpeed = 300;
     
 
     endingWaitCount = 0;
-    endingHoldTime = 100;
+    endingHoldTime = 200;
     endingAlpha = 255;
 
     
     ofLog()<<"photo bomb order";
     // set some values and shuffle it
     for (int i=1; i<photoBombTotalNumb+1; ++i) photoBombOrder.push_back(i); // 1 2 3 4 5 6 7 8 9 10
-    random_shuffle ( photoBombOrder.begin(), photoBombOrder.end() );
+    random_shuffle ( photoBombOrder.begin(), photoBombOrder.end());
     
     for (std::vector<int>::const_iterator it = photoBombOrder.begin(); it != photoBombOrder.end(); ++it)
         std::cout << *it << ' ';
@@ -418,7 +418,7 @@ void ofApp::update(){
                         vector<int>::iterator it=photoBombOrder.begin()+photoBombOrderIndex;
                         photoBombCurrentPick = *it;
                         ofLog()<<"photoBombCurrentPick: "<<photoBombCurrentPick;
-                        photoBombImg.load("tphotos/1-"+ofToString(photoBombCurrentPick)+"-mono.jpg");
+                        photoBombImg.load("tPhotoBomb/tphotoBomb-c"+ofToString(detectedColor)+"-"+ofToString(photoBombCurrentPick)+".jpg");
 
                         photoBombOrderIndex++;
                     }else{
@@ -470,7 +470,7 @@ void ofApp::update(){
                 endingWaitCount++;
             }else{
                 if(endingAlpha>0){
-                    endingAlpha-=20;
+                    endingAlpha-=15;
                     if(endingAlpha<0)endingAlpha=0;
                 }else{
                     endingAlpha = 255;
