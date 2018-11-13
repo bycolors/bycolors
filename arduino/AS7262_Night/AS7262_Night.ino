@@ -30,7 +30,7 @@ uint16_t sensorVals[AS726x_NUM_CHANNELS];
 //buffer to hold calibrated values (not used by default in this example)
 //float calibratedVals[AS726x_NUM_CHANNELS];
 
-bool debug = true;
+bool debug = false;
 
 long lastDetectedTime;
 uint16_t vVal;
@@ -45,7 +45,6 @@ int      averageSamples = 1; //waitTime = 3000 : 8 / 1500:3 /1000:1
 int      tolerance = 5;
 
 bool usingAverage = false;
-
 RunningAverage vAvg(averageSamples);
 RunningAverage bAvg(averageSamples);
 RunningAverage gAvg(averageSamples);
@@ -73,20 +72,22 @@ int avgColors[6]={0,0,0,0,0,0};
 //};
 
 int jColors[14][6]={
-{66,39,105,88,96,28},
-{33,13,64,46,73,24},
-{31,16,71,53,77,24},
-{21,10,67,48,75,24},
-{33,27,98,81,95,28},
-{30,30,108,90,100,28},
-{22,15,74,51,63,11},
-{22,11,58,34,45,2},
-{63,34,84,61,67,14},
-{32,9,54,31,43,2},
-{38,20,74,57,67,14},
-{20,5,55,35,49,5},
-{52,28,82,63,69,15},
-{71,43,113,96,100,29},
+{55,38,84,68,76,29},
+{19,12,36,22,47,24},
+{16,14,42,28,50,23},
+{5,8,37,21,47,23},
+{19,25,72,55,70,27},
+
+{15,28,84,66,76,28},
+{6,13,45,25,35,11},
+{6,9,27,7,15,1},
+{50,33,60,39,43,14},
+{15,7,22,5,14,1},
+
+{25,18,50,34,43,14},
+{4,3,24,8,20,4},
+{39,27,59,41,46,15},
+{59,42,92,75,79,28},
 };
 
 int detectThreshold = 3;
@@ -95,6 +96,7 @@ bool objectDetected = false;
 int sensorState;
 int detectedColor;
 int waitTime = 1000;
+int matchedColor;
 
 void setup() {
   Serial.begin(9600);
@@ -125,6 +127,11 @@ void setup() {
 }
 
 void loop() {
+  bool requested = false;
+
+  if(Serial.available()>0){
+    if(Serial.read()=='a') requested = true;
+  }
 
   readAS7262();
 //  printRawVals();
@@ -162,13 +169,16 @@ void loop() {
             avgColors[3]=round(yVal/100);
             avgColors[4]=round(oVal/100);
             avgColors[5]=round(rVal/100);
-//            printForCal();
-          int matchedColor = compareColors(avgColors);
+          //  printForCal();
+          matchedColor = compareColors(avgColors);
           if(debug){Serial.print("matching color: ");
-          Serial.println(matchedColor+1);}
+            Serial.println(matchedColor);}
           else{
-            Serial.write(matchedColor+1);
-          }
+              if(requested){
+                Serial.write(matchedColor);
+                //Serial.println(matchedColor);
+              }
+            }
           }
         }
 
@@ -183,11 +193,14 @@ void loop() {
           
           if(debug){printAvgVals();}
 
-          int matchedColor = compareColors(avgColors);
+          matchedColor = compareColors(avgColors);
           if(debug){Serial.print("matching color: ");
           Serial.println(matchedColor);}
           else{
-            Serial.write(matchedColor);
+              if(requested){
+                Serial.write(matchedColor);
+                //Serial.println(matchedColor);
+              }
           }
         }
        }

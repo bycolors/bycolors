@@ -4,9 +4,11 @@
 #include "ofxXmlSettings.h"
 #include "spinningWheel.h"
 #include "ofxAnimatableFloat.h"
+#include "ofxAnimatableOfPoint.h"
+
 #include <algorithm>    // std::random_shuffle
 #include <vector>       // std::vector
-
+#include <math.h>
 
 
 class ofApp : public ofBaseApp{
@@ -37,8 +39,10 @@ class ofApp : public ofBaseApp{
         void drawFrame(float _x, float _y, float _w, float _h, ofColor c);
 
         void resetkPhotoMonoInfo();
-        void loadAssets(int _numOfColor);
-        void kPhotoCrossFade();
+        void loadAssets(float _numOfColor);
+        void PhotoCrossFade();
+    
+        void resetGridAnimation();
 
 
         //layout related
@@ -86,14 +90,17 @@ class ofApp : public ofBaseApp{
         ofFbo   kPhotoFbo;
         ofFbo   fadingFbo;
         ofFbo   tPhotoFbo;
-        ofFbo   photoBombFbo;
+        ofFbo   tPhotoGridFbo;
+
+        ofImage tPhotoGridImg;
         ofImage kColorImg;
         ofImage tColorImg;
         ofImage tPhotoInfoImg;
         ofImage tPhotoMonoImg;
         ofImage tPhotoMonoInfoImg;
-        ofImage tNameImg;
-        ofImage photoBombImg;
+        ofImage tClosingImg;
+        ofImage tClosingMask;
+        ofImage tGridPhotos[8];
         vector<int>    photoBombOrder; //storing the order of photo bomb
         int photoBombTotalNumb;
         int photoBombOrderIndex =0;
@@ -104,6 +111,7 @@ class ofApp : public ofBaseApp{
         ofImage endingImg;
         float   endingAlpha;
         float   tPhotoScanBarPos;
+        float   tClosingAlpha;
     
         //timing related
         int frameCounter;
@@ -122,18 +130,12 @@ class ofApp : public ofBaseApp{
         int tPhotoInfoHoldTime;
         int tPhotoMonoHoldTime;
         int tPhotoMonoInfoHoldTime;
+        int tPhotoMono2HoldTime;
+    
     
         int tColorNameHoldTime;
 
-        int photoBombHoldTime; //delay before photo bomb
-
-        int photoBombSwitchWaitCount;
-        int photoBombSwitchHoldTime; //delay between each photo
-    
-        int photoBombSwitchSpeed; //basic delay of switching, the higher the slower
-        int photoBombSwitchAccel; //acceleration of switching, the higher the faster
-    
-        int photoBombClosingHoldTime;
+        int tClosingHoldTime;
 
         int mapHoldTime;
     
@@ -144,12 +146,23 @@ class ofApp : public ofBaseApp{
         ofxAnimatableFloat animatedPhotoSize;
         ofxAnimatableFloat kPhotoPosYoffset;
         ofxAnimatableFloat animatedCircleSize;
+    
+        ofxAnimatableFloat tPhotoGridSizeScale;
+        ofxAnimatableOfPoint tGridPos;
+    
+        ofxAnimatableOfPoint tGridPhotoPos[8];
+    
+    
+        float gridSize;
+        float photoSize;
 
     
         //sensor related
         ofSerial    serial;
         int detectedColor;
-    
+        int selectedTPhoto;
+        bool		bSendSerialMessage;			// a flag for sending serial
+
         enum Constants
         {
             STATE_START = 0,
@@ -162,33 +175,49 @@ class ofApp : public ofBaseApp{
             STATE_TPHOTO_MONO_IN = 7,
             STATE_TPHOTO_MONO_INFO_IN = 8,
             STATE_TPHOTO_INFO_IN = 9,
-            STATE_TCOLOR_FILL = 10,
-            STATE_TNAME_IN = 11,
-            STATE_PHOTO_BOMB = 12,
-            STATE_PHOTO_BOMB_CLOSING = 13,
+            STATE_TPHOTO_MONO_IN_2 = 10,
+            STATE_TPHOTO_GRID = 11,
+            STATE_TCOLOR_FILL = 12,
+            STATE_TCLOSING_IN = 13,
             STATE_MAP = 14,
             STATE_ENDING = 15
 
         };
     
     
-        struct colorPicker{
+        struct gridLocator{
             float x;
             float y;
-            ofColor hexColor;
         };
     
-        colorPicker allColorPickers[10]={
+        gridLocator allGridLocators[8]={
+            {2582,2582},
+            {230,230},
+            {230,2582},
+            {2582,230},
+            {1406,230},
+            {230,1406},
+            {2582,1406},
+            {1406,2582}
+        };
+    
+    
+        ofColor allColorPickers[14]={
             //tPhoto-c1-1-mono-info ~ tPhoto-c1-10-mono-info
-            {980,270,ofColor::fromHex(0xB87167)},
-            {0,0,ofColor::fromHex(0xB87167)},
-            {0,0,ofColor::fromHex(0xB87167)},
-            {0,0,ofColor::fromHex(0xB87167)},
-            {0,0,ofColor::fromHex(0xB87167)},
-            {0,0,ofColor::fromHex(0xB87167)},
-            {0,0,ofColor::fromHex(0xB87167)},
-            {0,0,ofColor::fromHex(0xB87167)},
-            {0,0,ofColor::fromHex(0xB87167)},
-            {0,0,ofColor::fromHex(0xB87167)}
+            ofColor::fromHex(0xB87167), //c1 red1
+            ofColor::fromHex(0xB87167),
+            ofColor::fromHex(0xB87167),
+            ofColor::fromHex(0xB87167),
+            ofColor::fromHex(0xB87167),
+            ofColor::fromHex(0xB87167),
+            ofColor::fromHex(0xB87167),
+            ofColor::fromHex(0xB87167),
+            ofColor::fromHex(0x52A6B4), //c9 blue1
+            ofColor::fromHex(0xB87167),
+            ofColor::fromHex(0xB87167),
+            ofColor::fromHex(0xB87167),
+            ofColor::fromHex(0xB87167),
+            ofColor::fromHex(0xB87167),
+
         };
 };
