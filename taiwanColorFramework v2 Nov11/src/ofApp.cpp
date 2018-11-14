@@ -102,22 +102,6 @@ void ofApp::setup(){
 
     
     
-    ofLog()<<"photo bomb order";
-    // set some values and shuffle it
-    for (int i=1; i<photoBombTotalNumb+1; ++i) {
-        photoBombOrder.push_back(i);
-    }
-    random_shuffle ( photoBombOrder.begin(), photoBombOrder.end());
-    // 1 2 3 4 5 6 7 8 9 10
-
-    for (std::vector<int>::const_iterator it = photoBombOrder.begin(); it != photoBombOrder.end(); ++it){
-        std::cout << *it << ' ';
-    }
-
-
-
-
-    photoBombClosingImg.load("photoBombClosing.jpg");
     mapAImg.load("mapA.jpg");
     mapBImg.load("mapB.jpg");
     endingImg.load("ending.jpg");
@@ -1040,7 +1024,6 @@ void ofApp::loadAssets(float _numOfColor){
 
     
     selectedTPhoto = rand()%4+1; // 1~4
-//    selectedTPhoto = 1; //TODO:: FIX SelectedTPhoto and photobomb numbering
 
     string tPhotoSubNumber = ofToString(selectedTPhoto);
     //string tPhotoSubNumber = ofToString(1);

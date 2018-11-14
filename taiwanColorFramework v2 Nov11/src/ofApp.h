@@ -101,10 +101,6 @@ class ofApp : public ofBaseApp{
         ofImage tClosingImg;
         ofImage tClosingMask;
         ofImage tGridPhotos[8];
-        vector<int>    photoBombOrder; //storing the order of photo bomb
-        int photoBombTotalNumb;
-        int photoBombOrderIndex =0;
-        ofImage photoBombClosingImg;
         ofImage mapAImg;
         ofImage mapBImg;
         int   mapSpeed;
