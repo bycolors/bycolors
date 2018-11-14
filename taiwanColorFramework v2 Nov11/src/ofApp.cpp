@@ -16,7 +16,7 @@ void ofApp::setup(){
     ofLog()<<"screen resolution: "<<ofGetWidth()<<" x "<<ofGetHeight();
     screenWidth = ofGetWidth();
     screenHeight = ofGetHeight();
-
+    
     loadAssets(1);
     state = STATE_START;
    // state = STATE_TPHOTO_MONO_IN_2;
@@ -867,7 +867,17 @@ void ofApp::playAndPreload(){
 
     // need to load the first movie : should only happen once
     if( !movies[nowPlayer].isLoaded() ){
-        movies[nowPlayer].load( "movies/morning-"+ofToString(loadingMovieId) + ".mp4" );
+        
+        string timeOfDay;
+        if (ofGetHours()<11) {
+            timeOfDay = "morning";
+        }else if(ofGetHours()<17){
+            timeOfDay = "afternoon";
+        }else{
+            timeOfDay = "night";
+        }
+        
+        movies[nowPlayer].load( "movies/"+timeOfDay+"-"+ofToString(loadingMovieId) + ".mp4" );
         //todo:: check time and load morning, afternoon, night movies
     }
 
