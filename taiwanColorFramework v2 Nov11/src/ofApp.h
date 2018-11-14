@@ -161,6 +161,7 @@ class ofApp : public ofBaseApp{
         ofSerial    serial;
         int detectedColor;
         int selectedTPhoto;
+        int selectedGridIndex;
         bool		bSendSerialMessage;			// a flag for sending serial
 
         enum Constants

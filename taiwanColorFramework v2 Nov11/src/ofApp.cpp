@@ -17,9 +17,11 @@ void ofApp::setup(){
     screenWidth = ofGetWidth();
     screenHeight = ofGetHeight();
     
-    loadAssets(1);
     state = STATE_START;
-   // state = STATE_TPHOTO_MONO_IN_2;
+
+    //for testing
+    //loadAssets(1);
+    //state = STATE_TPHOTO_MONO_IN_2;
 
     serial.listDevices();
   	vector <ofSerialDeviceInfo> deviceList = serial.getDeviceList();
@@ -474,7 +476,7 @@ void ofApp::update(){
                     ofPushMatrix();
                     ofTranslate(tGridPos.getCurrentPosition().x,tGridPos.getCurrentPosition().y);
                     tPhotoGridImg.draw(0,0,3892,3892);
-                    tPhotoMonoImg.draw(allGridLocators[selectedTPhoto-1].x,allGridLocators[selectedTPhoto-1].y,1080,1080);
+                    tPhotoMonoImg.draw(allGridLocators[selectedGridIndex].x,allGridLocators[selectedGridIndex].y,1080,1080);
                     
                     ofPopMatrix();
                     tPhotoGridFbo.end();
@@ -505,13 +507,13 @@ void ofApp::update(){
                 
                 // draw other photos
                 for(int i = 0; i < 8; i++ ){
-                    if(i!=selectedTPhoto-1){
+                    if(i!=selectedGridIndex){
                         ofPoint loc = tGridPhotoPos[i].getCurrentPosition()*(float)tPhotoGridSizeScale;
                         tGridPhotos[i].draw(loc.x,loc.y,photoSize,photoSize);
                     }
                 }
                 
-                tPhotoMonoImg.draw(allGridLocators[selectedTPhoto-1].x*(float)tPhotoGridSizeScale,allGridLocators[selectedTPhoto-1].y*(float)tPhotoGridSizeScale,photoSize,photoSize);
+                tPhotoMonoImg.draw(allGridLocators[selectedGridIndex].x*(float)tPhotoGridSizeScale,allGridLocators[selectedGridIndex].y*(float)tPhotoGridSizeScale,photoSize,photoSize);
 
                 ofPopMatrix();
 
@@ -565,7 +567,7 @@ void ofApp::update(){
             }else{
                 ofClear(255,255,255,0);
                 animatedCircleSize.animateFromTo(tPhotoGridFbo.getWidth()*0.01, tPhotoGridFbo.getWidth()*2);
-                resetGridAnimation();
+               // resetGridAnimation();
                 state = STATE_TCLOSING_IN;
 
             }
@@ -798,6 +800,8 @@ void ofApp::draw(){
         ofDrawBitmapString("Total Frames: "+ofToString(movies[nowPlayer].getTotalNumFrames()), 50, 120);
         ofDrawBitmapString("Current Frame: "+ofToString(movies[nowPlayer].getCurrentFrame()), 50, 150);
         ofDrawBitmapString("Detected color: "+ofToString(detectedColor), 50, 180);
+        ofDrawBitmapString("selected TPhoto: "+ofToString(selectedTPhoto), 50, 210);
+        ofDrawBitmapString("selected grid index: "+ofToString(selectedGridIndex), 50, 240);
 
     }
 
@@ -840,6 +844,11 @@ void ofApp::keyPressed(int key){
             loadAssets(detectedColor);
             state = STATE_DETECTED;
         break;
+        case '2':
+            detectedColor = 2;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+        break;
         case '9':
             detectedColor = 9;
             loadAssets(detectedColor);
@@ -865,17 +874,18 @@ void ofApp::keyPressed(int key){
 void ofApp::playAndPreload(){
     // PLAY the current movie
 
+    string timeOfDay;
+    
+    if (ofGetHours()<11) {
+        timeOfDay = "morning";
+    }else if(ofGetHours()<17){
+        timeOfDay = "afternoon";
+    }else{
+        timeOfDay = "night";
+    }
+
     // need to load the first movie : should only happen once
     if( !movies[nowPlayer].isLoaded() ){
-        
-        string timeOfDay;
-        if (ofGetHours()<11) {
-            timeOfDay = "morning";
-        }else if(ofGetHours()<17){
-            timeOfDay = "afternoon";
-        }else{
-            timeOfDay = "night";
-        }
         
         movies[nowPlayer].load( "movies/"+timeOfDay+"-"+ofToString(loadingMovieId) + ".mp4" );
         //todo:: check time and load morning, afternoon, night movies
@@ -884,14 +894,15 @@ void ofApp::playAndPreload(){
     movies[nowPlayer].setLoopState(OF_LOOP_NORMAL);
     movies[nowPlayer].play();
 
-    ofLog()<<"playing: "<<loadingMovieId<<".mp4";
+    ofLog()<<"playing: "<<timeOfDay<<"-"<<loadingMovieId<<".mp4";
 
     // PRELOAD the next movie
 
     // get a unique random ID
-    int preloadId = floor(ofRandom(totalMovies));
+    int preloadId = rand()%totalMovies; //0~totalmovies-1(=2)
+    
     while (preloadId == loadingMovieId ) {
-        preloadId = floor(ofRandom(totalMovies));
+        preloadId = rand()%totalMovies;
     }
 
     // set the loading movie to the new ID
@@ -899,8 +910,8 @@ void ofApp::playAndPreload(){
 
     // load movie in the player that isn't 'nowPlayer'
     int nextPlayer = nowPlayer == 0 ? 1 : 0;
-    movies[nextPlayer].load(  "movies/morning-"+ofToString(loadingMovieId) + ".mp4" );
-    ofLog()<<"loading: : "<<loadingMovieId<<".mp4";
+    movies[nextPlayer].load( "movies/"+timeOfDay+"-"+ofToString(loadingMovieId) + ".mp4" );
+    ofLog()<<"playing: "<<timeOfDay<<"-"<<loadingMovieId<<".mp4";
 
 }
 
@@ -1028,26 +1039,55 @@ void ofApp::loadAssets(float _numOfColor){
     tColorImg.load("tColors/tcolor-c"+colorNumber+".jpg");
 
     
-   // selectedTPhoto = ceil(ofRandom(8));
-    selectedTPhoto = 1; //TODO:: FIX SelectedTPhoto and photobomb numbering
+    selectedTPhoto = rand()%4+1; // 1~4
+//    selectedTPhoto = 1; //TODO:: FIX SelectedTPhoto and photobomb numbering
 
-    //string tPhotoSubNumber = ofToString(selectedTPhoto);
-    string tPhotoSubNumber = ofToString(1);
+    string tPhotoSubNumber = ofToString(selectedTPhoto);
+    //string tPhotoSubNumber = ofToString(1);
 
     tPhotoInfoImg.load("tPhotos/tphoto-c"+colorNumber+"-"+tPhotoSubNumber+"-info.jpg");
     tPhotoMonoImg.load("tPhotos/tphoto-c"+colorNumber+"-"+tPhotoSubNumber+"-mono.jpg");
     tPhotoMonoInfoImg.load("tPhotos/tphoto-c"+colorNumber+"-"+tPhotoSubNumber+"-mono-info.jpg");
     tClosingImg.load("tClosing/tClosing-c"+colorNumber+".jpg");
     
-    string combinedColorNumber = ofToString(ceil(_numOfColor/2));
+    int combinedColorNumber = ceil(_numOfColor/2);
     ofLog()<<"combinedColorNumber: "<<combinedColorNumber;
-    tPhotoGridImg.load("tPhotoGrid/tPhotoGrid-c"+combinedColorNumber+".jpg");
+    tPhotoGridImg.load("tPhotoGrid/tPhotoGrid-c"+ofToString(combinedColorNumber)+".jpg");
     
-    for(int i = 0; i<8;i++){
-      //  ofLog()<<"tPhotoBomb/c"+ofToString(colorNumber)+"/tphotoBomb-"+ofToString(i+1)+".jpg";
-        tGridPhotos[i].load("tPhotoBomb/c"+ofToString(colorNumber)+"/tphotoBomb-"+ofToString(i+1)+".jpg");
-    }
+    ofLog()<<"detected Color: "<<_numOfColor<<" selectedTPhoto: "<<selectedTPhoto<<" selectedGridIndex: "<<selectedGridIndex;
 
+    if(_numOfColor<combinedColorNumber*2){ // EX: 1 < ceil(1/2)*2=2
+        for(int i = 0; i < 4; i ++){
+            tGridPhotos[i].load("tPhotos/tphoto-c"+colorNumber+"-"+ofToString(i+1)+"-mono.jpg");
+            // EX: C1-(1~4)
+            tGridPhotos[i+4].load("tPhotos/tphoto-c"+ofToString(_numOfColor+1)+"-"+ofToString(i+1)+"-mono.jpg");
+            // EX: C2-(1~4)
+            
+            ofLog()<<"tPhotos/tphoto-c"+colorNumber+"-"+ofToString(i+1)+"-mono.jpg";
+            ofLog()<<"tPhotos/tphoto-c"+ofToString(_numOfColor+1)+"-"+ofToString(i+1)+"-mono.jpg";
+
+        }
+        selectedGridIndex = selectedTPhoto-1; //0 1 2 3
+
+        
+    }else{
+        //EX: 2 !< ceil(2/2)*2=2
+        for(int i = 0; i < 4; i ++){
+            tGridPhotos[i].load("tPhotos/tphoto-c"+ofToString(_numOfColor-1)+"-"+ofToString(i+1)+"-mono.jpg");
+            // EX: C1-(1~4)
+            tGridPhotos[i+4].load("tPhotos/tphoto-c"+colorNumber+"-"+ofToString(i+1)+"-mono.jpg");
+            // EX: C2-(1~4)
+
+            ofLog()<<"tPhotos/tphoto-c"+ofToString(_numOfColor-1)+"-"+ofToString(i+1)+"-mono.jpg";
+            ofLog()<<"tPhotos/tphoto-c"+colorNumber+"-"+ofToString(i+1)+"-mono.jpg";
+
+        }
+        
+        selectedGridIndex = selectedTPhoto - 1 + 4; //4 5 6 7
+
+    }
+    
+    resetGridAnimation();
 }
 
 //--------------------------------------------------------------
@@ -1077,7 +1117,7 @@ void ofApp::resetGridAnimation(){
     gridSize = 3892;
     photoSize = 1080;
     
-    tGridPos.setPosition(ofPoint((-allGridLocators[selectedTPhoto-1].x),(-allGridLocators[selectedTPhoto-1].y)));
+    tGridPos.setPosition(ofPoint((-allGridLocators[selectedGridIndex].x),(-allGridLocators[selectedGridIndex].y)));
     tGridPos.animateTo(ofPoint(0,0));
     
     tPhotoGridSizeScale.animateFromTo(1, 1080/gridSize);
