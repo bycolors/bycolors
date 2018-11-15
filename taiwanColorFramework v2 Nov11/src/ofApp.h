@@ -103,6 +103,8 @@ class ofApp : public ofBaseApp{
         ofImage tGridPhotos[8];
         ofImage mapAImg;
         ofImage mapBImg;
+        ofImage searchingImg;
+        ofImage byColorImg;
         int   mapSpeed;
         ofImage endingImg;
         float   endingAlpha;

@@ -73,8 +73,11 @@ void ofApp::setup(){
     foregroundImage=&kPhotoImg;
 
 
-    searchingFont.load("Skia.ttf", 17);
-    frameFont.load("Skia.ttf", 24);
+    searchingFont.load("Mrs Eaves OT Roman.otf", 17);
+    searchingFont.setLetterSpacing(0.9);
+    frameFont.load("Mrs Eaves OT Roman.otf", 24);
+    //searchingImg.load("searching_text.jpg");
+    //byColorImg.load("bycolor_text.jpg");
 
     crossFadeSpeed = 5;
     tClosingAlpha = 255;
@@ -653,6 +656,8 @@ void ofApp::draw(){
             drawFrame(-kPhotoFbo.getWidth()*0.11,-kPhotoFbo.getWidth()*0.15, kPhotoFbo.getWidth()*0.22, kPhotoFbo.getWidth()*0.305,ofColor::white);
             ofSetColor(ofColor::white);
             searchingFont.drawString("searching...", -searchingFont.stringWidth("searching...")/2, kPhotoFbo.getWidth()*0.04);
+            ofSetRectMode(OF_RECTMODE_CENTER);
+           // searchingImg.draw(0,-kPhotoFbo.getHeight()*0.2,kPhotoFbo.getWidth()*0.15,kPhotoFbo.getWidth()*0.15*32/146);
 
             ofDisableAlphaBlending();
             ofDisableSmoothing();
