@@ -142,7 +142,7 @@ void ofApp::setup(){
     loadingMovieId = 0;
     playAndPreload();
 
-    showInfo = true;
+    showInfo = false;
 
     if (XML.load("mySettings.xml")) {
         ofLog()<<"mySettings.xml loaded!";
