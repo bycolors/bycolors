@@ -12,6 +12,8 @@ void ofApp::setup(){
         }
     #endif
 
+    ofHideCursor();
+    
 
     ofLog()<<"screen resolution: "<<ofGetWidth()<<" x "<<ofGetHeight();
     screenWidth = ofGetWidth();
@@ -1028,7 +1030,8 @@ void ofApp::loadAssets(float _numOfColor){
     tColorImg.load("tColors/tcolor-c"+colorNumber+".jpg");
 
     
-    selectedTPhoto = rand()%4+1; // 1~4
+    //selectedTPhoto = rand()%4+1; // 1~4
+    selectedTPhoto = 1; // 1~4
 
     string tPhotoSubNumber = ofToString(selectedTPhoto);
     //string tPhotoSubNumber = ofToString(1);
