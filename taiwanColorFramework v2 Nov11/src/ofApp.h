@@ -105,6 +105,7 @@ class ofApp : public ofBaseApp{
         ofImage mapBImg;
         ofImage searchingImg;
         ofImage byColorImg;
+        ofImage wrongColorImg;
         int   mapSpeed;
         ofImage endingImg;
         float   endingAlpha;
@@ -129,6 +130,7 @@ class ofApp : public ofBaseApp{
         int tPhotoMonoHoldTime;
         int tPhotoMonoInfoHoldTime;
         int tPhotoMono2HoldTime;
+        int wrongColorHoldTime;
     
     
         int tColorNameHoldTime;
@@ -179,7 +181,8 @@ class ofApp : public ofBaseApp{
             STATE_TCOLOR_FILL = 12,
             STATE_TCLOSING_IN = 13,
             STATE_MAP = 14,
-            STATE_ENDING = 15
+            STATE_ENDING = 15,
+            STATE_WRONG_COLOR = 16
 
         };
     

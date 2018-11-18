@@ -97,6 +97,7 @@ void ofApp::setup(){
     tPhotoMonoInfoHoldTime = 200;
     tPhotoMono2HoldTime = 50;
     tColorNameHoldTime = 200;
+    wrongColorHoldTime = 200;
     
     tClosingHoldTime = 150;
     mapHoldTime = 200;
@@ -110,6 +111,7 @@ void ofApp::setup(){
     mapAImg.load("mapA.jpg");
     mapBImg.load("mapB.jpg");
     endingImg.load("ending.jpg");
+    wrongColorImg.load("wrong-black.jpg");
 
     animatedPhotoPos.animateFromTo(0, screenHeight);
     animatedPhotoPos.setDuration(0.5);
@@ -616,7 +618,21 @@ void ofApp::update(){
                 }
             }
         break;
+        //--------------------------------------------------------------
+            
+        case STATE_WRONG_COLOR:
+            if(frameCounter<wrongColorHoldTime){
+                frameCounter++;
+                checkSerial();
+                
+            }else{
+                serial.flush();
+                frameCounter = 0;
+                state = STATE_START;
+                ofLog()<<"starting over";
+            }
 
+        break;
 
         default:
           break;
@@ -773,6 +789,11 @@ void ofApp::draw(){
             ofPopStyle();
         break;
         //--------------------------------------------------------------
+        case STATE_WRONG_COLOR:
+            wrongColorImg.draw((screenWidth-screenHeight)/2+canvasOffsetX,canvasOffsetY,screenHeight,screenHeight);
+
+        break;
+
         default:
         break;
     }
@@ -901,6 +922,9 @@ void ofApp::keyPressed(int key){
             loadAssets(detectedColor);
             state = STATE_DETECTED;
             break;
+        case 'x':
+            state = STATE_WRONG_COLOR;
+            break;
 
 
         default:
@@ -1009,7 +1033,7 @@ void ofApp::checkSerial(){
             }else if ( myByte == OF_SERIAL_ERROR ){
                 ofLog()<<"error";
             }else if ( myByte > 14){
-                ofLog()<<"no matching color";
+                state = STATE_WRONG_COLOR;
             }else{
                 ofLog()<<"detected color: "<< myByte;
                 detectedColor = myByte;
