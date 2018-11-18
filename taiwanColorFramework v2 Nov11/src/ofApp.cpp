@@ -840,14 +840,67 @@ void ofApp::keyPressed(int key){
             loadAssets(detectedColor);
             state = STATE_DETECTED;
         break;
+        case '3':
+            detectedColor = 3;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+        break;
+        case '4':
+            detectedColor = 4;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+        break;
+        case '5':
+            detectedColor = 5;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+        break;
+        case '6':
+            detectedColor = 6;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+        break;
+        case '7':
+            detectedColor = 7;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+        break;
+        case '8':
+            detectedColor = 8;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+        break;
+
         case '9':
             detectedColor = 9;
             loadAssets(detectedColor);
             state = STATE_DETECTED;
         break;
-        case '3':
-            state = 3;
-        break;
+        case 'q':
+            detectedColor = 10;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+            break;
+        case 'w':
+            detectedColor = 11;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+            break;
+        case 'e':
+            detectedColor = 12;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+            break;
+        case 'a':
+            detectedColor = 13;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+            break;
+        case 's':
+            detectedColor = 14;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+            break;
 
 
         default:
@@ -1030,8 +1083,8 @@ void ofApp::loadAssets(float _numOfColor){
     tColorImg.load("tColors/tcolor-c"+colorNumber+".jpg");
 
     
-    //selectedTPhoto = rand()%4+1; // 1~4
-    selectedTPhoto = 1; // 1~4
+    selectedTPhoto = rand()%4+1; // 1~4
+    //selectedTPhoto = 1; // 1~4
 
     string tPhotoSubNumber = ofToString(selectedTPhoto);
     //string tPhotoSubNumber = ofToString(1);
@@ -1041,10 +1094,15 @@ void ofApp::loadAssets(float _numOfColor){
     tPhotoMonoInfoImg.load("tPhotos/tphoto-c"+colorNumber+"-"+tPhotoSubNumber+"-mono-info.jpg");
     tClosingImg.load("tClosing/tClosing-c"+colorNumber+".jpg");
     
+    // using combined color code for grid bg: ex: c1, c2 -> c1
+    //int combinedColorNumber = ceil(_numOfColor/2);
+    //ofLog()<<"combinedColorNumber: "<<combinedColorNumber;
+    //tPhotoGridImg.load("tPhotoGrid/tPhotoGrid-c"+ofToString(combinedColorNumber)+".jpg");
+
     int combinedColorNumber = ceil(_numOfColor/2);
-    ofLog()<<"combinedColorNumber: "<<combinedColorNumber;
-    tPhotoGridImg.load("tPhotoGrid/tPhotoGrid-c"+ofToString(combinedColorNumber)+".jpg");
-    
+    //ofLog()<<"combinedColorNumber: "<<combinedColorNumber;
+    tPhotoGridImg.load("tPhotoGrid/tPhotoGrid-c"+colorNumber+".jpg");
+
     ofLog()<<"detected Color: "<<_numOfColor<<" selectedTPhoto: "<<selectedTPhoto<<" selectedGridIndex: "<<selectedGridIndex;
 
     if(_numOfColor<combinedColorNumber*2){ // EX: 1 < ceil(1/2)*2=2

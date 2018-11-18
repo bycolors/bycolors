@@ -203,20 +203,21 @@ class ofApp : public ofBaseApp{
     
         ofColor allColorPickers[14]={
             //tPhoto-c1-1-mono-info ~ tPhoto-c1-10-mono-info
-            ofColor::fromHex(0xB87167), //c1 red1
+            //color code for t color
+            ofColor::fromHex(0xD34D42), //c1 red1
             ofColor::fromHex(0xB87167),
-            ofColor::fromHex(0xB87167),
-            ofColor::fromHex(0xB87167),
-            ofColor::fromHex(0xB87167),
-            ofColor::fromHex(0xB87167),
-            ofColor::fromHex(0xB87167),
-            ofColor::fromHex(0xB87167),
-            ofColor::fromHex(0x52A6B4), //c9 blue1
-            ofColor::fromHex(0xB87167),
-            ofColor::fromHex(0xB87167),
-            ofColor::fromHex(0xB87167),
-            ofColor::fromHex(0xB87167),
-            ofColor::fromHex(0xB87167),
+            ofColor::fromHex(0xDE632E), //c3 orange1
+            ofColor::fromHex(0xE18738),
+            ofColor::fromHex(0xE4B57F), //c5 yellow1
+            ofColor::fromHex(0xF0B537),
+            ofColor::fromHex(0x1E4327), //c6 green1
+            ofColor::fromHex(0x585F36),
+            ofColor::fromHex(0x2E3A79), //c9 blue1
+            ofColor::fromHex(0x4AB6C8),
+            ofColor::fromHex(0x443120), //c11 brown1
+            ofColor::fromHex(0xA57C66),
+            ofColor::fromHex(0xE2DDDB), //c13 gray1
+            ofColor::fromHex(0x707580),
 
         };
 };
