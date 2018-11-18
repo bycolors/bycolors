@@ -22,8 +22,8 @@ void ofApp::setup(){
     state = STATE_START;
 
     //for testing
-    //loadAssets(1);
-    //state = STATE_TPHOTO_MONO_IN_2;
+//    loadAssets(6);
+//    state = STATE_TPHOTO_MONO_IN_2;
 
     serial.listDevices();
   	vector <ofSerialDeviceInfo> deviceList = serial.getDeviceList();
@@ -71,8 +71,7 @@ void ofApp::setup(){
     fadeMaskFbo.end();
 
     fadeMaskAlpha = 0;
-    backgroundImage=&kPhotoMonoInfoImg;
-    foregroundImage=&kPhotoImg;
+    loadFadeImages(&kPhotoImg, &kPhotoMonoInfoImg);
 
 
     searchingFont.load("Mrs Eaves OT Roman.otf", 17);
@@ -293,8 +292,7 @@ void ofApp::update(){
                         resetFadeMask();
                         state = STATE_KPHOTO_MONO_IN;
                         frameCounter = 0;
-                        foregroundImage=&kPhotoMonoInfoImg;
-                        backgroundImage=&kPhotoMonoImg;
+                        loadFadeImages(&kPhotoMonoInfoImg, &kPhotoMonoImg);
 
                     }
                 }
@@ -317,8 +315,7 @@ void ofApp::update(){
                     resetFadeMask();
                     state = STATE_KCOLOR_IN;
                     frameCounter = 0;
-                    foregroundImage=&kPhotoMonoImg;
-                    backgroundImage=&kColorImg;
+                    loadFadeImages(&kPhotoMonoImg, &kColorImg);
                 }
 
             }
@@ -339,8 +336,7 @@ void ofApp::update(){
                     resetFadeMask();
                     state = STATE_TCOLOR_IN;
                     frameCounter = 0;
-                    foregroundImage=&kColorImg;
-                    backgroundImage=&tColorImg;
+                    loadFadeImages(&kColorImg, &tColorImg);
                 }
 
             }
@@ -362,8 +358,7 @@ void ofApp::update(){
                     resetFadeMask();
                     state = STATE_TPHOTO_MONO_IN;
                     frameCounter = 0;
-                    foregroundImage=&tColorImg;
-                    backgroundImage=&tPhotoMonoImg;
+                    loadFadeImages(&tColorImg, &tPhotoMonoImg);
                 }
 
             }
@@ -387,8 +382,7 @@ void ofApp::update(){
                     resetFadeMask();
                     state = STATE_TPHOTO_MONO_INFO_IN;
                     frameCounter = 0;
-                    foregroundImage=&tPhotoMonoImg;
-                    backgroundImage=&tPhotoMonoInfoImg;
+                    loadFadeImages(&tPhotoMonoImg, &tPhotoMonoInfoImg);
                 }
 
             }
@@ -411,8 +405,7 @@ void ofApp::update(){
                     resetFadeMask();
                     state = STATE_TPHOTO_INFO_IN;
                     frameCounter = 0;
-                    foregroundImage=&tPhotoMonoInfoImg;
-                    backgroundImage=&tPhotoInfoImg;
+                    loadFadeImages(&tPhotoMonoInfoImg, &tPhotoInfoImg);
                 }
 
             }
@@ -434,8 +427,7 @@ void ofApp::update(){
                     state = STATE_TPHOTO_MONO_IN_2;
                     frameCounter = 0;
                     resetFadeMask();
-                    backgroundImage=&tPhotoMonoImg;
-                    foregroundImage=&tPhotoInfoImg;
+                    loadFadeImages(&tPhotoInfoImg, &tPhotoMonoImg);
 
                 }
 
@@ -458,8 +450,7 @@ void ofApp::update(){
                     state = STATE_TPHOTO_GRID;
                     frameCounter = 0;
                     resetFadeMask();
-                    backgroundImage=&kPhotoMonoInfoImg;
-                    foregroundImage=&kPhotoImg;
+                    loadFadeImages(&kPhotoImg, &kPhotoMonoInfoImg);
                     
                     //preload next scene
                     tPhotoGridFbo.begin();
@@ -1075,6 +1066,7 @@ void ofApp::drawFrame(float _x, float _y, float _w, float _h, ofColor c){
 //--------------------------------------------------------------
 
 void ofApp::PhotoCrossFade(){
+    
     fadingFbo.begin();
     shader.begin();
     // here is where the fbo is passed to the shader
@@ -1107,8 +1099,8 @@ void ofApp::loadAssets(float _numOfColor){
     tColorImg.load("tColors/tcolor-c"+colorNumber+".jpg");
 
     
-    selectedTPhoto = rand()%4+1; // 1~4
-    //selectedTPhoto = 1; // 1~4
+    //selectedTPhoto = rand()%4+1; // 1~4
+    selectedTPhoto = 2; // 1~4
 
     string tPhotoSubNumber = ofToString(selectedTPhoto);
     //string tPhotoSubNumber = ofToString(1);
@@ -1215,6 +1207,24 @@ void ofApp::resetGridAnimation(){
 
 void ofApp::exit(){
 
+}
+
+//--------------------------------------------------------------
+void ofApp::loadFadeImages(ofImage* _foreground, ofImage* _background){
+    
+    foregroundImage=_foreground;
+    backgroundImage=_background;
+    
+    
+    if(foregroundImage->getWidth() != fadeMaskFbo.getWidth()){
+        foregroundImage->resize(fadeMaskFbo.getWidth(), fadeMaskFbo.getHeight());
+    }
+    
+    if(backgroundImage->getWidth() != fadeMaskFbo.getWidth()){
+        backgroundImage->resize(fadeMaskFbo.getWidth(), fadeMaskFbo.getHeight());
+    }
+
+    
 }
 
 //--------------------------------------------------------------

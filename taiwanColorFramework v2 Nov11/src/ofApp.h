@@ -77,9 +77,11 @@ class ofApp : public ofBaseApp{
         int crossFadeSpeed;
 
         ofFbo fadeMaskFbo;
+    
         void updateFadeMask(int _fadeSpeed);
         void resetFadeMask();
-
+    
+        void loadFadeImages(ofImage* _foreground, ofImage* _background);
 
     
         //photo related;
