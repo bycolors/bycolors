@@ -110,7 +110,7 @@ void ofApp::setup(){
     mapAImg.load("mapA.jpg");
     mapBImg.load("mapB.jpg");
     endingImg.load("ending.jpg");
-    wrongColorImg.load("wrong-black.jpg");
+    wrongColorImg.load("wrong.jpg");
 
     animatedPhotoPos.animateFromTo(0, screenHeight);
     animatedPhotoPos.setDuration(0.5);
