@@ -86,7 +86,7 @@ int jColors[14][6]={
 
 {3,3,20,7,18,4},
 {25,18,46,33,41,13},
-{49,40,97,78,87,29},
+{57,41,89,73,78,27},
 {39,26,56,40,45,14},
 };
 
@@ -169,7 +169,7 @@ void loop() {
             avgColors[3]=round(yVal/100);
             avgColors[4]=round(oVal/100);
             avgColors[5]=round(rVal/100);
-          //  printForCal();
+            //printForCal();
           matchedColor = compareColors(avgColors);
           if(debug){Serial.print("matching color: ");
             Serial.println(matchedColor);}

@@ -971,6 +971,10 @@ void ofApp::playAndPreload(){
     int nextPlayer = nowPlayer == 0 ? 1 : 0;
     movies[nextPlayer].load( "movies/"+timeOfDay+"-"+ofToString(loadingMovieId) + ".mp4" );
     ofLog()<<"playing: "<<timeOfDay<<"-"<<loadingMovieId<<".mp4";
+    
+    movies[nowPlayer].setVolume(0);
+    movies[nextPlayer].setVolume(0);
+
 
 }
 
@@ -1099,8 +1103,8 @@ void ofApp::loadAssets(float _numOfColor){
     tColorImg.load("tColors/tcolor-c"+colorNumber+".jpg");
 
     
-    //selectedTPhoto = rand()%4+1; // 1~4
-    selectedTPhoto = 2; // 1~4
+    selectedTPhoto = rand()%4+1; // 1~4
+    //selectedTPhoto = 2; // 1~4
 
     string tPhotoSubNumber = ofToString(selectedTPhoto);
     //string tPhotoSubNumber = ofToString(1);
