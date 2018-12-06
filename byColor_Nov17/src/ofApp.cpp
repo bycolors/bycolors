@@ -1028,7 +1028,7 @@ void ofApp::checkSerial(){
             }else if ( myByte == OF_SERIAL_ERROR ){
                 ofLog()<<"error";
             }else if ( myByte > 14){
-                state = STATE_WRONG_COLOR;
+//                state = STATE_WRONG_COLOR;
             }else{
                 ofLog()<<"detected color: "<< myByte;
                 detectedColor = myByte;
