@@ -42,7 +42,7 @@ uint16_t rVal;
 uint8_t  temp;
 int      numOfSamples = 0;
 int      averageSamples = 1; //waitTime = 3000 : 8 / 1500:3 /1000:1
-int      tolerance = 5;
+int      tolerance = 20;
 
 bool usingAverage = false;
 RunningAverage vAvg(averageSamples);
@@ -71,26 +71,50 @@ int avgColors[6]={0,0,0,0,0,0};
 //  {17,10,26,23,25,8}
 //};
 
+// integration time 50, gain 16x
+//int jColors[14][6]={
+//  
+//{17,12,53,27,63,23},
+//{21,10,46,20,61,23},
+//{9,8,50,22,66,23},
+//{9,12,62,31,70,23},
+//{18,22,75,48,80,26},
+//
+//{16,25,90,58,81,23},
+//{10,12,50,17,41,5},
+//{9,12,54,21,48,9},
+//{17,8,42,12,37,4},
+//{45,26,62,32,51,12},
+//
+//{7,4,43,12,41,5},
+//{23,17,56,28,55,15},
+//{52,35,90,62,82,26},
+//{35,24,67,35,56,14},
+//};
+
+//integration time 50 gain 64x
 int jColors[14][6]={
-{26,12,45,38,56,21},
-{30,10,40,34,53,20},
-{21,9,45,38,58,21},
-{21,12,52,44,62,21},
-{27,21,67,59,70,24},
+  
+{49,42,130,83,180,87},
+{67,35,108,61,165,84},
+{18,28,122,67,179,88},
+{19,40,160,97,199,87},
+{55,83,240,184,248,98},
 
-{25,24,76,66,70,21},
-{22,12,47,34,37,5},
-{21,11,48,37,42,8},
-{29,9,39,29,33,4},
-{51,25,55,43,44,11},
+{51,96,281,216,251,89},
+{20,41,121,44,75,14},
+{18,42,136,63,104,30},
+{51,26,89,24,62,9},
+{172,101,184,112,129,41},
 
-{21,6,39,30,37,5},
-{32,17,51,41,49,14},
-{57,33,77,68,72,24},
-{42,22,55,44,48,13},
+{13,10,83,25,69,13},
+{76,62,153,92,142,51},
+{199,134,291,236,262,97},
+{132,90,187,120,149,50},
 };
 
-int detectThreshold = 3;
+
+int detectThreshold = 5;
 bool objectDetected = false;
 
 int sensorState;
@@ -111,11 +135,13 @@ void setup() {
     while(1);
   }
 
-//  ams.setGain(GAIN_64X);
-  ams.setGain(GAIN_16X);
+  ams.setGain(GAIN_64X);
+//  ams.setGain(GAIN_16X);
 
-  //about 1 sec per data
+  // 50:about 1 sec per data
   ams.setIntegrationTime(50);
+//  ams.setIntegrationTime(100);
+
   lastDetectedTime = 0;
 
   if(usingAverage){
@@ -173,12 +199,14 @@ void loop() {
             avgColors[5]=round(rVal/100);
 //            printForCal();
           matchedColor = compareColors(avgColors);
+//                      Serial.println(matchedColor);
+
           if(debug){Serial.print("matching color: ");
             Serial.println(matchedColor);}
           else{
               if(requested){
                 Serial.write(matchedColor);
-                //Serial.println(matchedColor);
+//                Serial.println(matchedColor);
               }
             }
           }
