@@ -44,6 +44,7 @@ int      numOfSamples = 0;
 int      averageSamples = 1; //waitTime = 3000 : 8 / 1500:3 /1000:1
 int      tolerance = 20;
 
+ 
 bool usingAverage = false;
 RunningAverage vAvg(averageSamples);
 RunningAverage bAvg(averageSamples);
@@ -92,25 +93,46 @@ int avgColors[6]={0,0,0,0,0,0};
 //{35,24,67,35,56,14},
 //};
 
+bool testData = false;
 //integration time 50 gain 64x
 int jColors[14][6]={
   
-{49,42,130,83,180,87},
-{67,35,108,61,165,84},
-{18,28,122,67,179,88},
-{19,40,160,97,199,87},
-{55,83,240,184,248,98},
+{50,43,136,86,177,83},
+{62,35,111,62,164,85},
+{19,29,130,71,187,95},
+{20,40,160,96,202,92},
+{55,78,233,174,245,99},
 
-{51,96,281,216,251,89},
-{20,41,121,44,75,14},
-{18,42,136,63,104,30},
-{51,26,89,24,62,9},
-{172,101,184,112,129,41},
+{48,92,272,204,249,93},
+{20,34,111,36,68,11},
+{17,37,138,58,106,28},
+{51,27,93,24,62,9},
+{172,100,187,113,134,44},
 
-{13,10,83,25,69,13},
-{76,62,153,92,142,51},
-{199,134,291,236,262,97},
-{132,90,187,120,149,50},
+{12,8,92,20,71,9},
+{77,64,159,93,142,53},
+{194,133,295,236,259,96},
+{119,85,182,112,146,51},
+};
+
+int jColors2[14][6]={
+  
+{50,43,136,86,177,83},
+{62,35,111,62,164,85},
+{19,29,130,71,187,95},
+{20,40,160,96,202,92},
+{55,78,233,174,245,99},
+
+{48,92,272,204,249,93},
+{20,34,111,36,68,11},
+{17,37,138,58,106,28},
+{51,27,93,24,62,9},
+{172,100,187,113,134,44},
+
+{12,8,92,20,71,9},
+{77,64,159,93,142,53},
+{194,133,295,236,259,96},
+{119,85,182,112,146,51},
 };
 
 
@@ -197,9 +219,9 @@ void loop() {
             avgColors[3]=round(yVal/100);
             avgColors[4]=round(oVal/100);
             avgColors[5]=round(rVal/100);
-//            printForCal();
+            if(testData) {printForCal();}
           matchedColor = compareColors(avgColors);
-//                      Serial.println(matchedColor);
+                      if (testData){Serial.println(matchedColor);}
 
           if(debug){Serial.print("matching color: ");
             Serial.println(matchedColor);}
@@ -327,7 +349,7 @@ int compareColors(int colors[6]){
         Serial.print(" diff:");
         Serial.println(abs(colors[i]-jColors[j][i]));
       }
-      if(abs(colors[i]-jColors[j][i])<tolerance){
+      if(abs(colors[i]-jColors[j][i])<tolerance||abs(colors[i]-jColors2[j][i])<tolerance){
         same = true;
         if(debug)Serial.print(" true ");
       }else{
