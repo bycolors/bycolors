@@ -113,6 +113,25 @@ int jColors[14][6]={
 {132,90,187,120,149,50},
 };
 
+int jColors2[14][6]={
+  
+{49,42,130,83,180,87},
+{67,35,108,61,165,84},
+{18,28,122,67,179,88},
+{19,40,160,97,199,87},
+{55,83,240,184,248,98},
+
+{51,96,281,216,251,89},
+{20,41,121,44,75,14},
+{18,42,136,63,104,30},
+{51,26,89,24,62,9},
+{172,101,184,112,129,41},
+
+{13,10,83,25,69,13},
+{76,62,153,92,142,51},
+{199,134,291,236,262,97},
+{132,90,187,120,149,50},
+};
 
 int detectThreshold = 5;
 bool objectDetected = false;
@@ -327,7 +346,7 @@ int compareColors(int colors[6]){
         Serial.print(" diff:");
         Serial.println(abs(colors[i]-jColors[j][i]));
       }
-      if(abs(colors[i]-jColors[j][i])<tolerance){
+      if(abs(colors[i]-jColors[j][i])<tolerance||abs(colors[i]-jColors2[j][i])<tolerance){
         same = true;
         if(debug)Serial.print(" true ");
       }else{
