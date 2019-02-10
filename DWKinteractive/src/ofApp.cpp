@@ -835,7 +835,7 @@ void ofApp::updateMovie(){
   // ofPushStyle();
   // ofSetRectMode(OF_RECTMODE_CENTER); //set rectangle mode to the center
   // movies[nowPlayer].draw(movieFbo.getWidth()/2, movieFbo.getHeight()/2);
-  movies[nowPlayer].draw(0,0,movieFbo.getWidth(),movieFbo.getHeight());
+  movies[nowPlayer].draw(-(movieFbo.getHeight()/9*3.5),0,movieFbo.getHeight()*16/9,movieFbo.getHeight());
   // ofPopStyle();
   movieFbo.end();
 
