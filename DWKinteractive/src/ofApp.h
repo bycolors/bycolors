@@ -94,6 +94,7 @@ class ofApp : public ofBaseApp{
         ofImage byColorsInfoImg;
         ofImage dwkInfoImg;
         ofImage endingImg;
+        ofImage frameTextImg;
 
     
         ofFbo   mapSelectedFbo;
@@ -223,22 +224,32 @@ class ofApp : public ofBaseApp{
         };
 
 
-        ofColor allColorPickers[14]={
+        ofColor allColorPickers[20]={
             //color code for t color
-            ofColor::fromHex(0xf68b1f), //c1
-            ofColor::fromHex(0xB87167),
-            ofColor::fromHex(0xDE632E), //c3
-            ofColor::fromHex(0xE18738),
-            ofColor::fromHex(0xE4B57F), //c5
-            ofColor::fromHex(0xF0B537),
-            ofColor::fromHex(0x1E4327), //c6
-            ofColor::fromHex(0x585F36),
-            ofColor::fromHex(0x2E3A79), //c9
-            ofColor::fromHex(0x4AB6C8),
-            ofColor::fromHex(0x443120), //c11
-            ofColor::fromHex(0xA57C66),
-            ofColor::fromHex(0xE2DDDB), //c13
-            ofColor::fromHex(0x707580),
+            ofColor::fromHex(0x77b7db), //c1
+            ofColor::fromHex(0x7ac2bf),
+            ofColor::fromHex(0xaac3d1), //c3
+            ofColor::fromHex(0x23a7d8),
+            ofColor::fromHex(0x262c50), //c5
+            
+            ofColor::fromHex(0x785e8b),
+            ofColor::fromHex(0x4d234b), //c7
+            ofColor::fromHex(0xf1f0f2),
+            ofColor::fromHex(0xa29892), //c9
+            ofColor::fromHex(0x05030f),
+            
+            ofColor::fromHex(0xf6d1d0), //c11
+            ofColor::fromHex(0xf3d663),
+            ofColor::fromHex(0xdd657d), //c13
+            ofColor::fromHex(0x9ec45a),
+            ofColor::fromHex(0xd67c6f), //c15
 
+            ofColor::fromHex(0x4c984b),
+            ofColor::fromHex(0xe7872f), //c17
+            ofColor::fromHex(0x62554e),
+            ofColor::fromHex(0xf9ebce), //c19
+            ofColor::fromHex(0x657e8e),
+
+            
         };
 };

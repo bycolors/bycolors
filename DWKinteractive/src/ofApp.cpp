@@ -103,6 +103,7 @@ void ofApp::setup(){
 
     endingImg.load("ending.jpg");
     wrongColorImg.load("wrong.jpg");
+    frameTextImg.load("frameText.jpg");
 
     animatedPosHorizontal.animateFromTo(0,1080);
     animatedPosHorizontal.setDuration(2);
@@ -135,7 +136,7 @@ void ofApp::setup(){
 
     colorWheel.setup(screenHeight*0.051,screenHeight*0.037,2.625); //outter radius, inner radius, rotation speed
 
-    totalMovies = 3;
+    totalMovies = 2;
     nowPlayer = 0;
     loadingMovieId = 0;
     playAndPreload();
@@ -215,7 +216,7 @@ void ofApp::update(){
                 ofPushStyle();
 
                 //clean the fbo
-                ofSetColor(0);
+                ofSetColor(255);
                 ofDrawRectangle(0, 0, colorFbo.getWidth(), colorFbo.getHeight());
 
                 ofTranslate(colorFbo.getWidth()/2, colorFbo.getHeight()/2);
@@ -229,7 +230,7 @@ void ofApp::update(){
 
 
                 ofSetRectMode(OF_RECTMODE_CORNER);
-                drawFrame(-colorFbo.getWidth()*0.11,-colorFbo.getWidth()*0.15, colorFbo.getWidth()*0.22, colorFbo.getWidth()*0.305,ofColor::white);
+                drawFrame(-colorFbo.getWidth()*0.11,-colorFbo.getWidth()*0.15, colorFbo.getWidth()*0.22, colorFbo.getWidth()*0.305,ofColor::black);
 
                 ofDisableAlphaBlending();
                 ofDisableSmoothing();
@@ -492,12 +493,14 @@ void ofApp::draw(){
             ofEnableAlphaBlending();
             ofEnableSmoothing();
 
-            ofSetColor(0);
+            ofSetColor(255);
             ofDrawRectangle(-screenHeight/2,-screenHeight/2,screenHeight,screenHeight);
 
             colorWheel.draw(0,-colorFbo.getWidth()*0.045);
-            drawFrame(-colorFbo.getWidth()*0.11,-colorFbo.getWidth()*0.15, colorFbo.getWidth()*0.22, colorFbo.getWidth()*0.305,ofColor::white);
-            ofSetColor(ofColor::white);
+            drawFrame(-colorFbo.getWidth()*0.11,-colorFbo.getWidth()*0.15, colorFbo.getWidth()*0.22, colorFbo.getWidth()*0.305,ofColor::black);
+            
+            
+            ofSetColor(ofColor::black);
             searchingFont.drawString("searching...", -searchingFont.stringWidth("searching...")/2, colorFbo.getWidth()*0.04);
             ofSetRectMode(OF_RECTMODE_CENTER);
            // searchingImg.draw(0,-kPhotoFbo.getHeight()*0.2,kPhotoFbo.getWidth()*0.15,kPhotoFbo.getWidth()*0.15*32/146);
@@ -613,11 +616,11 @@ void ofApp::keyPressed(int key){
             canvasOffsetY++;
         break;
 
-        case 'r':
+        case 's':
             switchMovie();
         break;
 
-        case 'i':
+        case 'd':
             showInfo=!showInfo;
         break;
 
@@ -686,16 +689,47 @@ void ofApp::keyPressed(int key){
             loadAssets(detectedColor);
             state = STATE_DETECTED;
             break;
-        case 'a':
+        case 'r':
             detectedColor = 13;
             loadAssets(detectedColor);
             state = STATE_DETECTED;
             break;
-        case 's':
+        case 't':
             detectedColor = 14;
             loadAssets(detectedColor);
             state = STATE_DETECTED;
             break;
+        case 'y':
+            detectedColor = 15;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+            break;
+        case 'u':
+            detectedColor = 16;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+            break;
+        case 'i':
+            detectedColor = 17;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+            break;
+        case 'o':
+            detectedColor = 18;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+            break;
+        case 'p':
+            detectedColor = 19;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+            break;
+        case 'a':
+            detectedColor = 20;
+            loadAssets(detectedColor);
+            state = STATE_DETECTED;
+            break;
+
         case 'x':
             state = STATE_WRONG_COLOR;
             break;
@@ -716,28 +750,32 @@ void ofApp::keyPressed(int key){
 void ofApp::playAndPreload(){
     // PLAY the current movie
 
-    string timeOfDay;
+//    string timeOfDay;
 
-    if (ofGetHours()<11) {
-        timeOfDay = "morning";
-    }else if(ofGetHours()<17){
-        timeOfDay = "afternoon";
-    }else{
-        timeOfDay = "night";
-    }
+//    if (ofGetHours()<11) {
+//        timeOfDay = "morning";
+//    }else if(ofGetHours()<17){
+//        timeOfDay = "afternoon";
+//    }else{
+//        timeOfDay = "night";
+//    }
 
     // need to load the first movie : should only happen once
     if( !movies[nowPlayer].isLoaded() ){
 
-        movies[nowPlayer].load( "movies/"+timeOfDay+"-"+ofToString(loadingMovieId) + ".mp4" );
+//        movies[nowPlayer].load( "movies/"+timeOfDay+"-"+ofToString(loadingMovieId) + ".mp4" );
+        movies[nowPlayer].load( "movies/"+ofToString(loadingMovieId) + ".mp4" );
+
         //todo:: check time and load morning, afternoon, night movies
     }
 
     movies[nowPlayer].setLoopState(OF_LOOP_NORMAL);
     movies[nowPlayer].play();
 
-    ofLog()<<"playing: "<<timeOfDay<<"-"<<loadingMovieId<<".mp4";
+//    ofLog()<<"playing: "<<timeOfDay<<"-"<<loadingMovieId<<".mp4";
+    ofLog()<<"playing: "<<loadingMovieId<<".mp4";
 
+    
     // PRELOAD the next movie
 
     // get a unique random ID
@@ -752,9 +790,14 @@ void ofApp::playAndPreload(){
 
     // load movie in the player that isn't 'nowPlayer'
     int nextPlayer = nowPlayer == 0 ? 1 : 0;
-    movies[nextPlayer].load( "movies/"+timeOfDay+"-"+ofToString(loadingMovieId) + ".mp4" );
-    ofLog()<<"playing: "<<timeOfDay<<"-"<<loadingMovieId<<".mp4";
 
+//    movies[nextPlayer].load( "movies/"+timeOfDay+"-"+ofToString(loadingMovieId) + ".mp4" );
+//    ofLog()<<"playing: "<<timeOfDay<<"-"<<loadingMovieId<<".mp4";
+
+    movies[nextPlayer].load( "movies/"+ofToString(loadingMovieId) + ".mp4" );
+    ofLog()<<"playing: "<<loadingMovieId<<".mp4";
+
+    
     movies[nowPlayer].setVolume(0);
     movies[nextPlayer].setVolume(0);
 
@@ -840,12 +883,19 @@ void ofApp::drawFrame(float _x, float _y, float _w, float _h, ofColor c){
 
     path.draw();
 
-
-    ofSetColor(c.getInverted());
+    ofPushStyle();
+    //ofSetColor(c.getInverted());
     ofPushMatrix();
-    ofTranslate(_x+_w/2, _y+_h);
-    float strWidth = frameFont.stringWidth("#by colors");
-    frameFont.drawString("#by colors",-strWidth/2,-_h*.1);
+    ofTranslate(_x, _y+_w);
+    //float strWidth = frameFont.stringWidth("#by colors");
+    //frameFont.drawString("#by colors",-strWidth/2,-_h*.1);
+    ofDisableAlphaBlending();
+    ofSetColor(ofColor::white);
+    ofDrawRectangle(0,0,_w,_w*0.392);
+    frameTextImg.draw(0,0,_w,_w*0.392);
+    ofEnableAlphaBlending();
+
+    ofPopStyle();
     ofPopMatrix();
 
 }
